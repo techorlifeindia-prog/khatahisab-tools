@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Crop, Wand2, Code, Image as ImageIcon, Type } from "lucide-react";
+import { Crop, Wand2, Code, Image as ImageIcon, Type, Sparkles } from "lucide-react";
 import Link from "next/link";
 import "./globals.css";
 import { GlobalSearch } from "@/components/GlobalSearch";
@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "M3Bharat Tools - Free Online Tools",
-  description: "A collection of premium, fast, and free online tools by M3Bharat.",
+  title: "KhataHisab - Business & Utility Tools",
+  description: "A collection of premium, fast, and free online tools by KhataHisab.",
 };
 
 export default function RootLayout({
@@ -41,8 +41,8 @@ export default function RootLayout({
         <header className="sticky top-0 z-50 w-full border-b border-white/50 bg-white/70 backdrop-blur-xl shadow-sm">
           <div className="container mx-auto px-4 h-16 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/30">M</div>
-              <span className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text">M3Bharat Tools</span>
+              <img src="/logo.svg" alt="KhataHisab Logo" className="w-10 h-10 object-contain drop-shadow-sm" />
+              <span className="font-extrabold text-2xl tracking-tight text-slate-900">Khata<span className="text-red-600">Hisab</span></span>
             </Link>
 
             <GlobalSearch />
@@ -82,6 +82,10 @@ export default function RootLayout({
                   <div className="p-1.5 rounded-lg bg-indigo-100 text-indigo-600 group-hover:bg-indigo-500 group-hover:text-white transition-colors"><Type className="w-4 h-4" /></div>
                   <span className="font-semibold text-sm">Word Counter</span>
                 </Link>
+                <Link href="/bg-remover" className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 transition-all text-slate-600 hover:text-pink-600 group">
+                  <div className="p-1.5 rounded-lg bg-pink-100 text-pink-600 group-hover:bg-pink-500 group-hover:text-white transition-colors"><Sparkles className="w-4 h-4" /></div>
+                  <span className="font-semibold text-sm">Background Remover</span>
+                </Link>
               </nav>
 
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 px-2 mt-8">Categories</h3>
@@ -96,7 +100,7 @@ export default function RootLayout({
                 </a>
                 <a href="#" className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-white text-slate-600 hover:text-blue-600 transition-all text-sm font-semibold">
                   <span>Media Tools</span>
-                  <span className="bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full text-xs">1</span>
+                  <span className="bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full text-xs">2</span>
                 </a>
                 <a href="#" className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-white text-slate-600 hover:text-blue-600 transition-all text-sm font-semibold">
                   <span>Utilities</span>
@@ -114,7 +118,7 @@ export default function RootLayout({
         {/* Footer */}
         <footer className="border-t border-white/50 py-8 bg-white/50 backdrop-blur-sm relative z-10">
           <div className="container mx-auto px-4 text-center text-sm font-medium text-slate-500">
-            &copy; {new Date().getFullYear()} M3Bharat Tools. All rights reserved. Built with ⚡ Speed & Privacy.
+            &copy; {new Date().getFullYear()} KhataHisab. All rights reserved. Built with ⚡ Speed & Privacy.
           </div>
         </footer>
       </body>

@@ -18,7 +18,7 @@ function SearchInput() {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setQuery(val);
-    
+
     // If not on homepage, redirect to homepage with query
     if (window.location.pathname !== "/") {
       router.push(`/?q=${encodeURIComponent(val)}`);

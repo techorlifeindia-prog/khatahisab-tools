@@ -1,0 +1,79 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Drop Shadow for 3D effect -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="5" dy="7" stdDeviation="5" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    
+    <!-- Light Drop Shadow for smaller elements -->
+    <filter id="light-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="2" dy="3" stdDeviation="2" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+
+    <!-- 3D Red Cover Gradient (Cylindrical look) -->
+    <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B0000" />
+      <stop offset="12%" stop-color="#E53935" />
+      <stop offset="85%" stop-color="#D32F2F" />
+      <stop offset="100%" stop-color="#B71C1C" />
+    </linearGradient>
+
+    <!-- Stylus Metal Gradient (Shiny Silver) -->
+    <linearGradient id="penGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="30%" stop-color="#E0E0E0" />
+      <stop offset="70%" stop-color="#9E9E9E" />
+      <stop offset="100%" stop-color="#616161" />
+    </linearGradient>
+  </defs>
+
+  <!-- Transparent Background -->
+  
+  <!-- 3D Red Book Cover -->
+  <rect x="70" y="50" width="340" height="412" rx="15" fill="url(#redGradient)" filter="url(#shadow)" />
+  
+  <!-- Cream Pages (Right edge) -->
+  <rect x="400" y="80" width="25" height="352" rx="5" fill="#FFF1B8" filter="url(#light-shadow)" />
+  <line x1="406" y1="80" x2="406" y2="432" stroke="#E6D298" stroke-width="2" />
+  <line x1="413" y1="80" x2="413" y2="432" stroke="#E6D298" stroke-width="2" />
+  <line x1="420" y1="80" x2="420" y2="432" stroke="#E6D298" stroke-width="2" />
+
+  <!-- Left Spine Fold Shadow Line -->
+  <line x1="110" y1="50" x2="110" y2="462" stroke="#660000" stroke-width="5" stroke-opacity="0.7" />
+  
+  <!-- White Stitches (Silai) with slight shadow -->
+  <line x1="95" y1="100" x2="125" y2="100" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" filter="url(#light-shadow)" />
+  <line x1="95" y1="150" x2="125" y2="150" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" filter="url(#light-shadow)" />
+  <line x1="95" y1="200" x2="125" y2="200" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" filter="url(#light-shadow)" />
+  <line x1="95" y1="250" x2="125" y2="250" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" filter="url(#light-shadow)" />
+  <line x1="95" y1="300" x2="125" y2="300" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" filter="url(#light-shadow)" />
+  <line x1="95" y1="350" x2="125" y2="350" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" filter="url(#light-shadow)" />
+  <line x1="95" y1="400" x2="125" y2="400" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" filter="url(#light-shadow)" />
+  
+  <!-- Digital Circuitry (Tech Vibe) -->
+  <path d="M 320 60 L 360 60 L 360 100 M 360 80 L 380 80" fill="none" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="3" />
+  <circle cx="320" cy="60" r="4" fill="#00E5FF" filter="url(#light-shadow)" />
+  <circle cx="360" cy="100" r="4" fill="#00E5FF" filter="url(#light-shadow)" />
+  <circle cx="380" cy="80" r="4" fill="#00E5FF" filter="url(#light-shadow)" />
+
+  <!-- 3D Large Letter K -->
+  <!-- Shifted slightly left to balance the pen -->
+  <text x="210" y="340" font-family="'Segoe UI', Arial, sans-serif" font-weight="900" font-size="280" fill="#FFFFFF" text-anchor="middle" filter="url(#shadow)">K</text>
+  
+  <!-- Text Khata Hisab -->
+  <text x="240" y="430" font-family="'Segoe UI', Arial, sans-serif" font-weight="800" font-size="22" fill="#FFFFFF" text-anchor="middle" letter-spacing="4" filter="url(#light-shadow)">Khata Hisab</text>
+
+  <!-- Digital 3D Stylus Pen (Standing upright on the right side) -->
+  <g transform="translate(360, 130) rotate(5)" filter="url(#shadow)">
+    <!-- Pen Body -->
+    <rect x="-8" y="0" width="16" height="150" rx="8" fill="url(#penGradient)" />
+    <!-- Pen Grip Lines -->
+    <line x1="-8" y1="100" x2="8" y2="100" stroke="#333333" stroke-width="2" />
+    <line x1="-8" y1="115" x2="8" y2="115" stroke="#333333" stroke-width="2" />
+    <line x1="-8" y1="130" x2="8" y2="130" stroke="#333333" stroke-width="2" />
+    <!-- Pen Tip -->
+    <polygon points="-6,150 6,150 0,180" fill="#333333" />
+    <!-- Glowing Blue Laser Tip -->
+    <circle cx="0" cy="180" r="5" fill="#00E5FF" />
+  </g>
+</svg>
