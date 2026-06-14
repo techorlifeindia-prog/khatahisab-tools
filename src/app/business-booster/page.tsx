@@ -38,8 +38,9 @@ export default function BusinessBooster() {
   const [googleRating, setGoogleRating] = useState<number>(0);
   const [googleReviewCount, setGoogleReviewCount] = useState<number>(0);
   const [profileScore, setProfileScore] = useState<number>(85);
-  const [issuesFound, setIssuesFound] = useState<number>(8);
+  const [issuesFound, setIssuesFound] = useState<number>(0);
   const [competitors, setCompetitors] = useState<any[]>([]);
+  const [dynamicIssues, setDynamicIssues] = useState<string[]>([]);
   const [googleAddress, setGoogleAddress] = useState<string>('');
 
   // Review Replier States
@@ -155,6 +156,7 @@ export default function BusinessBooster() {
           if (data.profileScore) setProfileScore(data.profileScore);
           if (data.issuesFound) setIssuesFound(data.issuesFound);
           if (data.competitors) setCompetitors(data.competitors);
+          if (data.dynamicIssues) setDynamicIssues(data.dynamicIssues);
           
           setGoogleAddress(data.address);
         }
@@ -658,48 +660,22 @@ export default function BusinessBooster() {
                     <div className="mb-10 border border-red-200 rounded-2xl p-6 sm:p-8 bg-white shadow-sm relative overflow-hidden">
                       <div className="text-center mb-6">
                         <h3 className="text-lg sm:text-xl font-bold text-slate-800 mb-4">
-                          <span className="mr-2">⚠️</span> {businessName || 'Chamunda industries'} rank kyun nahi kar raha?
+                          <span className="mr-2">⚠️</span> {businessName || 'Your Business'} rank kyun nahi kar raha?
                         </h3>
                         <span className="inline-block text-red-500 font-bold text-sm bg-red-50 px-4 py-1 rounded-full">
-                          8 issues
+                          {issuesFound} issues
                         </span>
                       </div>
 
                       <hr className="my-6 border-slate-100" />
 
                       <ul className="space-y-4 text-sm sm:text-base text-slate-700 font-medium">
-                        <li className="flex items-start gap-3">
-                          <span className="text-red-500 font-black mt-0.5">×</span>
-                          <span>Sirf 0.01 new reviews per week - nearby top businesses 2.00+ paate hain</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <span className="text-red-500 font-black mt-0.5">×</span>
-                          <span>7 reviews unanswered - sirf 47% par reply hai</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <span className="text-red-500 font-black mt-0.5">×</span>
-                          <span>5 keywords missing - aap Title, Primary Category, Additional Category ke liye show nahi hote</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <span className="text-red-500 font-black mt-0.5">×</span>
-                          <span>Primary keyword not found in title</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <span className="text-red-500 font-black mt-0.5">×</span>
-                          <span>Primary category not in top 3 relevant categories by Keyword volume</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <span className="text-red-500 font-black mt-0.5">×</span>
-                          <span>At least 3 additional categories should be in top 10 relevant categories by Keyword volume</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <span className="text-red-500 font-black mt-0.5">×</span>
-                          <span>Keyword car battery manufacturer not found in services</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <span className="text-red-500 font-black mt-0.5">×</span>
-                          <span>Keyword inverter battery manufacturer not found in services</span>
-                        </li>
+                        {dynamicIssues.map((issue, index) => (
+                          <li key={index} className="flex items-start gap-3">
+                            <span className="text-red-500 font-black mt-0.5">×</span>
+                            <span>{issue}</span>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                     </div>
