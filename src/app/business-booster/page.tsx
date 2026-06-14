@@ -293,7 +293,7 @@ export default function BusinessBooster() {
         </div>
       </nav>
 
-      <main className={`mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10 transition-all duration-500 ${step === 'dashboard' ? 'max-w-7xl' : 'max-w-3xl'}`}>
+      <main className={`mx-auto transition-all duration-500 ${step === 'dashboard' ? 'max-w-[100%] px-2 py-2' : 'max-w-3xl px-4 sm:px-6 py-6 md:py-10'}`}>
 
         {/* STEP 1: INPUT FORM */}
         {step === 'input' && (
@@ -528,7 +528,7 @@ export default function BusinessBooster() {
               </div>
 
               {/* Dashboard Content */}
-              <div className="flex-1 p-6 md:p-8 bg-white md:max-h-[800px] md:overflow-y-auto custom-scrollbar">
+              <div className="flex-1 p-4 md:p-6 bg-white md:max-h-[800px] md:overflow-y-auto custom-scrollbar">
 
                 {activeTab === 'report' && (
                   <div className="animate-in fade-in duration-300">
