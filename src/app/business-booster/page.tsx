@@ -39,6 +39,7 @@ export default function BusinessBooster() {
   const [googleReviewCount, setGoogleReviewCount] = useState<number>(0);
   const [profileScore, setProfileScore] = useState<number>(85);
   const [issuesFound, setIssuesFound] = useState<number>(8);
+  const [competitors, setCompetitors] = useState<any[]>([]);
   const [googleAddress, setGoogleAddress] = useState<string>('');
 
   // Review Replier States
@@ -143,7 +144,7 @@ export default function BusinessBooster() {
     fetch('/api/places', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: `${businessName} ${location}` })
+      body: JSON.stringify({ query: `${businessName} ${location}`, category: businessCategory, location: location })
     })
       .then(res => res.json())
       .then(data => {
@@ -153,6 +154,7 @@ export default function BusinessBooster() {
           if (data.userRatingCount) setGoogleReviewCount(data.userRatingCount);
           if (data.profileScore) setProfileScore(data.profileScore);
           if (data.issuesFound) setIssuesFound(data.issuesFound);
+          if (data.competitors) setCompetitors(data.competitors);
           
           setGoogleAddress(data.address);
         }
@@ -586,39 +588,71 @@ export default function BusinessBooster() {
                       </div>
                     </div>
 
-                    {/* Competitors List */}
-                    <div className="mb-10">
-                      <div className="flex items-center gap-2 mb-4">
-                        <TrendingUp className="w-5 h-5 text-slate-400" />
-                        <h3 className="text-lg font-bold text-slate-800">Who is ranking above you?</h3>
+                    {/* Competitors List (Exact Match to Screenshot) */}
+                    <div className="mb-10 border-2 border-red-600 rounded-2xl p-4 sm:p-6 bg-white relative overflow-hidden">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center border border-orange-100 shadow-sm">
+                          🏆
+                        </div>
+                        <h3 className="text-xl font-bold text-slate-800">Google par kaun aapse aage hai</h3>
                       </div>
-                      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                      
+                      {/* Red Banner */}
+                      <div className="bg-gradient-to-r from-red-800 to-red-900 rounded-2xl p-5 mb-6 text-white shadow-md relative overflow-hidden">
+                        <div className="flex items-center gap-4 relative z-10">
+                          <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20 shrink-0">
+                            🎯
+                          </div>
+                          <div>
+                            <h4 className="text-xl font-black mb-1">Aapke paas 20 businesses</h4>
+                            <p className="text-red-100 text-sm font-medium">Google par upar rank karte hain - aur aapke customers le rahe hain.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="overflow-x-auto">
                         <table className="w-full text-left text-sm">
-                          <thead className="bg-slate-50 border-b border-slate-200 text-xs uppercase font-bold text-slate-500">
+                          <thead className="border-b border-slate-200 text-xs uppercase font-bold text-slate-500 tracking-wider">
                             <tr>
-                              <th className="px-4 py-3">Business</th>
-                              <th className="px-4 py-3 text-center">Rating</th>
-                              <th className="px-4 py-3 text-center">Reviews</th>
+                              <th className="py-3 px-2">BUSINESS</th>
+                              <th className="py-3 px-2 text-center">RATING</th>
+                              <th className="py-3 px-2 text-center">REVIEWS</th>
+                              <th className="py-3 px-2 text-center">RANK</th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-slate-100">
-                            <tr className="bg-white">
-                              <td className="px-4 py-3 font-bold text-slate-700">Top {businessCategory || 'Competitor'} 1</td>
-                              <td className="px-4 py-3 text-center text-amber-500 font-bold">5.0 ★</td>
-                              <td className="px-4 py-3 text-center text-emerald-600 font-semibold">124</td>
-                            </tr>
-                            <tr className="bg-white">
-                              <td className="px-4 py-3 font-bold text-slate-700">Premium {businessCategory || 'Competitor'} 2</td>
-                              <td className="px-4 py-3 text-center text-amber-500 font-bold">4.9 ★</td>
-                              <td className="px-4 py-3 text-center text-emerald-600 font-semibold">89</td>
-                            </tr>
-                            <tr className="bg-blue-50/50 border-l-4 border-l-blue-500">
-                              <td className="px-4 py-3 font-black text-blue-700">{businessName || 'Your Business'}</td>
-                              <td className="px-4 py-3 text-center font-bold text-slate-600">4.1 ★</td>
-                              <td className="px-4 py-3 text-center font-bold text-slate-600">12</td>
-                            </tr>
+                            {competitors.length > 0 ? competitors.map((comp, idx) => (
+                              <tr key={idx} className="bg-white">
+                                <td className="py-4 px-2 font-bold text-slate-800">{comp.name}</td>
+                                <td className="py-4 px-2 text-center text-slate-800 font-bold"><span className="text-amber-500 mr-1">★</span>{comp.rating}</td>
+                                <td className="py-4 px-2 text-center text-emerald-600 font-bold">{comp.reviews}</td>
+                                <td className="py-4 px-2 text-center">
+                                  <span className="bg-emerald-50 text-emerald-600 font-bold px-3 py-1 rounded-full text-xs">{comp.rank}</span>
+                                </td>
+                              </tr>
+                            )) : (
+                              <tr className="bg-white">
+                                <td colSpan={4} className="py-6 text-center text-slate-500">No competitors found. You are #1!</td>
+                              </tr>
+                            )}
                           </tbody>
                         </table>
+                      </div>
+
+                      <div className="text-center py-5 italic text-slate-400 text-sm font-medium">
+                        15 aur aapse aage...
+                      </div>
+
+                      {/* User's Business Row */}
+                      <div className="border border-blue-500 rounded-2xl p-4 bg-white flex justify-between items-center shadow-sm">
+                        <div className="flex items-center gap-2 text-blue-600 font-black text-sm sm:text-base">
+                          <span className="text-blue-400">▶</span> {businessName || 'Your Business'}
+                        </div>
+                        <div className="flex items-center gap-4 sm:gap-8 font-bold text-sm">
+                          <div className="flex items-center text-slate-800"><span className="text-amber-500 mr-1">★</span>{googleRating || 5.0}</div>
+                          <div className="text-red-600">{googleReviewCount || 21}</div>
+                          <div className="bg-red-600 text-white px-3 py-1 rounded-xl text-xs sm:text-sm shadow-sm">{20.2}</div>
+                        </div>
                       </div>
                     </div>
 

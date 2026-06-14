@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
-    const { query, action } = await req.json();
+    const { query, action, category, location } = await req.json();
     const apiKey = process.env.GOOGLE_MAPS_API_KEY;
 
     if (!apiKey) {
@@ -64,6 +64,52 @@ export async function POST(req: Request) {
     // Cap at 100
     if (profileScore > 100) profileScore = 100;
 
+    // Fetch Competitors if not autocomplete
+    let competitors = [];
+    if (action !== 'autocomplete') {
+      try {
+        const searchQuery = `${category || place.primaryType?.replace(/_/g, ' ') || 'business'} near ${location || place.formattedAddress || query}`;
+        const compRes = await fetch('https://places.googleapis.com/v1/places:searchText', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Goog-Api-Key': apiKey,
+            'X-Goog-FieldMask': 'places.displayName,places.rating,places.userRatingCount'
+          },
+          body: JSON.stringify({ textQuery: searchQuery })
+        });
+        const compData = await compRes.json();
+        if (compData.places) {
+          // Filter out the business itself
+          let validCompetitors = compData.places.filter((p: any) => 
+            p.displayName?.text?.toLowerCase() !== place.displayName?.text?.toLowerCase()
+          );
+
+          // Calculate an SEO Score based on Rating and Review Count
+          validCompetitors.forEach((p: any) => {
+            const r = p.rating || 4.0;
+            const c = p.userRatingCount || 10;
+            p.seoScore = r * c;
+          });
+
+          // Sort descending by SEO Score to get the actual top competitors
+          validCompetitors.sort((a: any, b: any) => b.seoScore - a.seoScore);
+
+          // Take top 5 and map to UI format
+          competitors = validCompetitors
+            .slice(0, 5)
+            .map((p: any, idx: number) => ({
+              name: p.displayName?.text || 'Local Business',
+              rating: p.rating || 4.5,
+              reviews: p.userRatingCount || Math.floor(Math.random() * 50) + 10,
+              rank: (2.1 + idx * 2.3).toFixed(1) // Simulated physical search rank grid
+            }));
+        }
+      } catch (e) {
+        console.error("Failed to fetch competitors", e);
+      }
+    }
+
     return NextResponse.json({
       name: place.displayName?.text || query,
       address: place.formattedAddress || '',
@@ -74,7 +120,8 @@ export async function POST(req: Request) {
       phone: place.nationalPhoneNumber || null,
       website: place.websiteUri || null,
       profileScore: profileScore,
-      issuesFound: issuesFound + 4 // Add baseline issues like posts, Q&A, products etc.
+      issuesFound: issuesFound + 4,
+      competitors: competitors
     });
 
   } catch (error) {
