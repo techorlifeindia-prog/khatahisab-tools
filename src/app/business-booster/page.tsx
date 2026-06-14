@@ -679,60 +679,107 @@ export default function BusinessBooster() {
                       </ul>
                     </div>
 
-                    {/* Premium Upgrade CTA */}
-                    <div className="bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-3xl p-6 sm:p-10 text-center text-white relative overflow-hidden shadow-lg border border-indigo-500/30">
-                      <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-                      <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3"></div>
+                    {/* Ultra Compact Premium Upgrade CTA */}
+                    <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 rounded-2xl p-4 sm:p-5 text-white relative overflow-hidden shadow-lg border border-indigo-500/30 flex flex-col md:flex-row items-center justify-between gap-4">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/3"></div>
                       
-                      <div className="relative z-10">
-                        <div className="inline-block mb-6 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold text-xs px-3 py-1.5 rounded-full uppercase tracking-wider">
+                      {/* Left: Text Content */}
+                      <div className="relative z-10 flex-1 text-center md:text-left">
+                        <div className="inline-block mb-1.5 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">
                           <span className="mr-1">⚡</span> Limited Launch Price
                         </div>
-                        
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-4 leading-tight">
+                        <h2 className="text-lg sm:text-xl font-black mb-1 leading-tight">
                           Kya hum aapke liye saare {issuesFound || 'in'} issues fix karein?
                         </h2>
-                        
-                        <p className="text-blue-100 font-medium text-sm sm:text-base max-w-2xl mx-auto mb-8">
-                          KhataHisab AI har week aapka Google profile handle karta hai - taaki aap <span className="font-bold text-white">'{businessName}'</span> chalane par focus kar sakein.
+                        <p className="text-blue-100 font-medium text-[11px] sm:text-xs">
+                          KhataHisab AI har week aapka Google profile handle karega.
                         </p>
+                      </div>
 
-                        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 max-w-sm mx-auto mb-8">
-                          <div className="text-blue-200 text-sm font-bold uppercase tracking-wider mb-2">KhataHisab AI Yearly Subscription</div>
-                          <div className="flex items-end justify-center gap-2 mb-2">
-                            <span className="text-5xl font-black">₹9,999</span>
-                            <span className="text-lg text-blue-200 font-bold mb-1">/yr</span>
+                      {/* Right: Price & Button in a row */}
+                      <div className="relative z-10 flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+                        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-4 py-2 flex flex-col items-center justify-center shrink-0 w-full sm:w-auto">
+                          <div className="flex items-end gap-1 leading-none">
+                            <span className="text-3xl font-black">₹0</span>
+                            <span className="text-sm text-blue-200 font-bold mb-0.5">/yr</span>
                           </div>
-                          <div className="text-xs font-bold text-emerald-300 bg-emerald-900/40 inline-block px-3 py-1 rounded-full border border-emerald-500/30">
-                            Save ₹25,401 • Just ₹27 per day
-                          </div>
+                          <span className="text-[9px] font-bold text-emerald-300 mt-1">100% Free For Now</span>
                         </div>
 
-                        <button className="bg-white text-indigo-700 hover:bg-blue-50 hover:scale-105 transition-all duration-300 font-black text-lg py-4 px-8 rounded-2xl shadow-xl hover:shadow-indigo-500/50 flex items-center justify-center gap-2 mx-auto w-full sm:w-auto">
-                          <span>Pay ₹9,999 - Aaj start karein</span>
+                        <button className="bg-white text-indigo-700 hover:bg-blue-50 hover:scale-105 transition-all duration-300 font-black text-sm py-3 px-5 rounded-xl shadow-xl shrink-0 w-full sm:w-auto flex items-center justify-center gap-1.5">
+                          <span>Start for ₹0</span>
                           <span>→</span>
                         </button>
-                        
-                        <div className="mt-4 flex flex-col items-center justify-center gap-2">
-                          <div className="flex items-center gap-4 text-xs font-medium text-blue-200">
-                            <span>Secure checkout</span>
-                            <span>•</span>
-                            <span>Setup begins same day</span>
-                          </div>
-                          
-                          <div className="mt-4 pt-4 border-t border-indigo-500/30 w-full max-w-sm flex flex-col items-center">
-                            <span className="text-[10px] font-bold text-blue-300 uppercase tracking-widest mb-3">Pay Using</span>
-                            <div className="flex flex-wrap justify-center gap-3">
-                              {['UPI', 'G Pay', 'PhonePe', 'VISA', 'Razorpay'].map((method) => (
-                                <span key={method} className="bg-white/10 border border-white/20 text-white text-[11px] font-bold px-3 py-1 rounded-md">
-                                  {method}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
+                  </div>
+
+                    {/* Local SEO Map Grid */}
+                    <div className="mb-5 mt-6 border border-slate-200 rounded-2xl p-3 sm:p-4 bg-white shadow-sm">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="text-xl">📍</div>
+                        <h3 className="text-lg sm:text-xl font-bold text-slate-800">Nearby aapki rank</h3>
+                      </div>
+                      
+                      <div className="bg-slate-50 rounded-xl p-2 mb-4 text-center border border-slate-100">
+                        <span className="text-slate-500 text-sm">Searching for: </span>
+                        <span className="font-bold text-slate-800">"{businessCategory || 'services'} near me"</span>
+                      </div>
+
+                      {/* Legend */}
+                      <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mb-4 text-sm font-medium">
+                        <div className="flex flex-col items-center">
+                          <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-emerald-500"></span><span className="text-slate-600 font-bold">Good</span></div>
+                          <span className="text-xs text-slate-500 mt-1">Top 5</span>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-amber-500"></span><span className="text-slate-600 font-bold">Average</span></div>
+                          <span className="text-xs text-slate-500 mt-1">6 – 20</span>
+                        </div>
+                        <div className="flex flex-col items-center">
+                          <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-red-500"></span><span className="text-slate-600 font-bold">Poor</span></div>
+                          <span className="text-xs text-slate-500 mt-1">Beyond 20</span>
+                        </div>
+                      </div>
+
+                      {/* Map Simulation */}
+                      <div className="relative w-full max-w-3xl mx-auto h-[220px] sm:h-[260px] rounded-xl overflow-hidden border border-slate-200 bg-[#e5e3df] mb-4">
+                        {/* Map Background Pattern (Subtle) */}
+                        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                        
+                        {/* Center marker */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10">
+                          <div className="w-4 h-4 bg-slate-800 rounded-full border-[3px] border-white shadow-md"></div>
+                          <span className="mt-1 text-[10px] font-black px-2 py-0.5 bg-white/90 rounded border border-slate-200 shadow-sm text-slate-800">Your Location</span>
+                        </div>
+
+                        {/* Grid Nodes (Compact Spread) */}
+                        <div className="absolute top-[30%] left-[35%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-amber-100 border-2 border-amber-500 flex items-center justify-center font-bold text-amber-700 text-sm shadow-md">16</div>
+                        <div className="absolute top-[30%] right-[35%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-amber-100 border-2 border-amber-500 flex items-center justify-center font-bold text-amber-700 text-sm shadow-md">14</div>
+                        <div className="absolute bottom-[30%] left-[35%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-red-100 border-2 border-red-500 flex items-center justify-center font-bold text-red-700 text-sm shadow-md">20+</div>
+                        <div className="absolute bottom-[30%] right-[35%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-red-100 border-2 border-red-500 flex items-center justify-center font-bold text-red-700 text-sm shadow-md">20+</div>
+                        <div className="absolute top-[40%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-amber-100 border-2 border-amber-500 flex items-center justify-center font-bold text-amber-700 text-sm shadow-md">13</div>
+                        <div className="absolute bottom-[40%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-amber-100 border-2 border-amber-500 flex items-center justify-center font-bold text-amber-700 text-sm shadow-md">15</div>
+                        <div className="absolute top-1/2 left-[42%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-amber-100 border-2 border-amber-500 flex items-center justify-center font-bold text-amber-700 text-sm shadow-md">18</div>
+                        <div className="absolute top-1/2 right-[42%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-amber-100 border-2 border-amber-500 flex items-center justify-center font-bold text-amber-700 text-sm shadow-md">15</div>
+                        <div className="absolute top-[25%] right-[25%] -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-amber-100 border-2 border-amber-500 flex items-center justify-center font-bold text-amber-700 text-sm shadow-md">18</div>
+                      </div>
+
+                      <div className="bg-red-50 text-red-800 text-sm p-3 rounded-xl border border-red-100 text-center font-medium">
+                        Aap 20 nearby areas mein se sirf 0 mein top 5 mein rank karte hain. Baaki areas mein customers aapko first page par nahi dekhte.
+                      </div>
+                    </div>
+
+                    {/* Profile Completion */}
+                    <div className="mb-6 border border-slate-200 rounded-2xl p-3 sm:p-4 bg-white shadow-sm">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="text-xl">📋</div>
+                        <h3 className="text-lg sm:text-xl font-bold text-slate-800">Profile completion</h3>
+                      </div>
+                      <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 sm:p-5 text-center shadow-inner">
+                        <div className="text-5xl font-black text-indigo-600 mb-1">{profileScore}%</div>
+                        <div className="text-sm font-bold text-slate-500 uppercase tracking-wider">Completed</div>
+                      </div>
                     </div>
                   </div>
                 )}
