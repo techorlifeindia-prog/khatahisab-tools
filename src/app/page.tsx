@@ -1,65 +1,119 @@
-import Image from "next/image";
+"use client";
+
+import { ArrowRight, Calculator, FileText, Image as ImageIcon, Code, Type, Clock, Search, Wand2 } from "lucide-react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+
+// [TL-HOME-F-01: Main Tool Hub Homepage]
+function HomeContent() {
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("q") || "";
+
+  const tools = [
+    {
+      title: "Age Calculator",
+      description: "Calculate your exact age in days, months, and years instantly.",
+      icon: <Clock className="w-6 h-6 text-blue-500" />,
+      href: "/age-calculator",
+      category: "Utility",
+    },
+    {
+      title: "Word & Character Counter",
+      description: "Count words, characters, and check keyword density in real-time.",
+      icon: <Type className="w-6 h-6 text-indigo-500" />,
+      href: "/word-counter",
+      category: "Text",
+    },
+    {
+      title: "JSON Formatter",
+      description: "Format, validate, and beautify your JSON data securely in the browser.",
+      icon: <Code className="w-6 h-6 text-green-500" />,
+      href: "/json-formatter",
+      category: "Developer",
+    },
+    {
+      title: "Image Compressor",
+      description: "Compress images locally without uploading to any server.",
+      icon: <ImageIcon className="w-6 h-6 text-purple-500" />,
+      href: "/image-compressor",
+      category: "Media",
+    },
+    {
+      title: "PDF Magic",
+      description: "Securely merge and organize PDF files locally without server uploads.",
+      icon: <Wand2 className="w-6 h-6 text-rose-500" />,
+      href: "/pdf-magic",
+      category: "Document",
+    },
+  ];
+
+  const filteredTools = tools.filter(tool => 
+    tool.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    tool.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    tool.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  return (
+    <div className="max-w-5xl mx-auto flex flex-col gap-8 md:gap-10">
+      {/* Hero Section */}
+      <section className="text-center pt-0 md:pt-4 flex flex-col items-center gap-4 md:gap-6 px-2">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight text-balance">
+          Superfast Free <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text block sm:inline">Online Tools</span>
+        </h1>
+        <p className="text-sm sm:text-base md:text-xl text-slate-600 max-w-2xl mx-auto font-medium px-2 text-balance leading-relaxed">
+          A premium collection of high-performance utilities. No intrusive ads, no server uploads. 100% Secure & Local Processing.
+        </p>
+
+        {/* Search Bar moved to Global Header */}
+      </section>
+
+      {/* Tools Grid */}
+      <section>
+        {filteredTools.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredTools.map((tool, idx) => (
+            <Link 
+              key={idx} 
+              href={tool.href}
+              className="group relative flex flex-col p-5 md:p-8 bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(59,130,246,0.1)] transition-all duration-300 hover:-translate-y-1 hover:bg-white/80"
+            >
+              <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                <div className="p-2.5 md:p-3.5 bg-white shadow-sm border border-slate-100 rounded-2xl group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 flex-shrink-0">
+                  {tool.icon}
+                </div>
+                <div>
+                  <h3 className="font-extrabold text-lg md:text-xl text-slate-800 leading-tight">{tool.title}</h3>
+                  <span className="text-[10px] md:text-xs font-bold px-2.5 md:px-3 py-0.5 md:py-1 rounded-full bg-blue-50 text-blue-600 border border-blue-100 mt-1.5 inline-block">
+                    {tool.category}
+                  </span>
+                </div>
+              </div>
+              <p className="text-xs md:text-sm text-slate-600 font-medium flex-1 leading-relaxed">
+                {tool.description}
+              </p>
+              <div className="mt-6 flex items-center text-sm font-bold text-blue-600 opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0 duration-300">
+                Use Tool <ArrowRight className="w-5 h-5 ml-1" />
+              </div>
+            </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12 bg-white/40 backdrop-blur-md rounded-3xl border border-dashed border-slate-300">
+            <Search className="h-12 w-12 text-slate-300 mx-auto mb-3" />
+            <h3 className="text-lg font-bold text-slate-700">No tools found</h3>
+            <p className="text-slate-500 font-medium">Try searching for a different keyword.</p>
+          </div>
+        )}
+      </section>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <Suspense fallback={<div className="max-w-5xl mx-auto py-20 text-center text-slate-500 font-medium animate-pulse">Loading Tools...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }
