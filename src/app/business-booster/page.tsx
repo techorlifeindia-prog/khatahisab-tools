@@ -654,71 +654,54 @@ export default function BusinessBooster() {
                           <div className="bg-red-600 text-white px-3 py-1 rounded-xl text-xs sm:text-sm shadow-sm">{20.2}</div>
                         </div>
                       </div>
+                              {/* Actionable Issues */}
+                    <div className="mb-10 border border-red-200 rounded-2xl p-6 sm:p-8 bg-white shadow-sm relative overflow-hidden">
+                      <div className="text-center mb-6">
+                        <h3 className="text-lg sm:text-xl font-bold text-slate-800 mb-4">
+                          <span className="mr-2">⚠️</span> {businessName || 'Chamunda industries'} rank kyun nahi kar raha?
+                        </h3>
+                        <span className="inline-block text-red-500 font-bold text-sm bg-red-50 px-4 py-1 rounded-full">
+                          8 issues
+                        </span>
+                      </div>
+
+                      <hr className="my-6 border-slate-100" />
+
+                      <ul className="space-y-4 text-sm sm:text-base text-slate-700 font-medium">
+                        <li className="flex items-start gap-3">
+                          <span className="text-red-500 font-black mt-0.5">×</span>
+                          <span>Sirf 0.01 new reviews per week - nearby top businesses 2.00+ paate hain</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-red-500 font-black mt-0.5">×</span>
+                          <span>7 reviews unanswered - sirf 47% par reply hai</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-red-500 font-black mt-0.5">×</span>
+                          <span>5 keywords missing - aap Title, Primary Category, Additional Category ke liye show nahi hote</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-red-500 font-black mt-0.5">×</span>
+                          <span>Primary keyword not found in title</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-red-500 font-black mt-0.5">×</span>
+                          <span>Primary category not in top 3 relevant categories by Keyword volume</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-red-500 font-black mt-0.5">×</span>
+                          <span>At least 3 additional categories should be in top 10 relevant categories by Keyword volume</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-red-500 font-black mt-0.5">×</span>
+                          <span>Keyword car battery manufacturer not found in services</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-red-500 font-black mt-0.5">×</span>
+                          <span>Keyword inverter battery manufacturer not found in services</span>
+                        </li>
+                      </ul>
                     </div>
-
-                    {/* Actionable Issues */}
-                    <div>
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="w-2 h-6 bg-red-500 rounded-full"></div>
-                        <h3 className="text-lg font-bold text-slate-800">Why are you not ranking?</h3>
-                      </div>
-
-                      <div className="space-y-4">
-                        {/* Issue 1 */}
-                        <div className="bg-white border border-red-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
-                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <div>
-                              <div className="flex items-center gap-2 text-red-600 font-bold text-sm mb-1">
-                                <span>❌</span> Unanswered Reviews
-                              </div>
-                              <p className="text-slate-600 text-sm">You have 7 reviews that haven't been replied to. Google prefers active profiles.</p>
-                            </div>
-                            <button
-                              onClick={() => setActiveTab('review')}
-                              className="shrink-0 bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold text-sm px-4 py-2 rounded-xl transition-colors"
-                            >
-                              Fix with AI Replier
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Issue 2 */}
-                        <div className="bg-white border border-amber-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
-                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <div>
-                              <div className="flex items-center gap-2 text-amber-600 font-bold text-sm mb-1">
-                                <span>⚠️</span> No Recent Posts
-                              </div>
-                              <p className="text-slate-600 text-sm">You haven't posted updates in the last 30 days. Regular posts boost local SEO.</p>
-                            </div>
-                            <button
-                              onClick={() => setActiveTab('post')}
-                              className="shrink-0 bg-purple-100 hover:bg-purple-200 text-purple-700 font-bold text-sm px-4 py-2 rounded-xl transition-colors"
-                            >
-                              Generate AI Post
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Issue 3 */}
-                        <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
-                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <div>
-                              <div className="flex items-center gap-2 text-slate-700 font-bold text-sm mb-1">
-                                <span>📉</span> Low Review Volume
-                              </div>
-                              <p className="text-slate-600 text-sm">You are getting less than 0.5 new reviews per week. Top competitors get 3+.</p>
-                            </div>
-                            <button
-                              onClick={() => setActiveTab('qr')}
-                              className="shrink-0 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 font-bold text-sm px-4 py-2 rounded-xl transition-colors"
-                            >
-                              Get QR Poster
-                            </button>
-                          </div>
-                        </div>
-
-                      </div>
                     </div>
                   </div>
                 )}
