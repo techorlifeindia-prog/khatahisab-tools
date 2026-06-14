@@ -79,7 +79,7 @@ export default function RootLayout({
 
         {/* Header */}
         <header className="sticky top-0 z-50 w-full border-b border-white/50 bg-white/70 backdrop-blur-xl shadow-sm">
-          <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="w-full px-2 md:px-4 h-16 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity">
               <img src="/logo.svg" alt="KhataHisab Logo" className="w-10 h-10 object-contain drop-shadow-sm" />
               <span className="font-extrabold text-2xl tracking-tight text-slate-900">Khata<span className="text-red-600">Hisab</span></span>
@@ -96,7 +96,7 @@ export default function RootLayout({
         </header>
 
         {/* Main Content Area */}
-        <div className="flex-1 container mx-auto px-4 py-4 md:py-8 relative z-10 flex gap-6 lg:gap-8">
+        <div className="flex-1 w-full px-2 md:px-4 py-4 md:py-8 relative z-10 flex gap-2 md:gap-4 lg:gap-6">
           {/* Left Sidebar - Quick Links */}
           <aside className="hidden lg:block w-64 shrink-0">
             <div className="sticky top-24 bg-white/60 backdrop-blur-xl border border-white/80 rounded-3xl p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
@@ -161,7 +161,7 @@ export default function RootLayout({
 
         {/* Footer */}
         <footer className="border-t border-white/50 py-8 bg-white/50 backdrop-blur-sm relative z-10">
-          <div className="container mx-auto px-4 text-center text-sm font-medium text-slate-500">
+          <div className="w-full px-2 md:px-4 text-center text-sm font-medium text-slate-500">
             &copy; {new Date().getFullYear()} KhataHisab. All rights reserved. Built with ⚡ Speed & Privacy.
           </div>
         </footer>
