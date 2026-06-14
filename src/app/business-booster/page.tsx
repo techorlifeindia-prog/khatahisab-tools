@@ -274,7 +274,7 @@ export default function BusinessBooster() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans pb-20">
+    <div className="w-full font-sans pb-10">
       {/* Top Navbar */}
       <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div className="max-w-[100%] mx-auto px-2">
@@ -532,7 +532,7 @@ export default function BusinessBooster() {
               </div>
 
               {/* Dashboard Content */}
-              <div className="flex-1 p-2 md:p-3 bg-white md:max-h-[800px] md:overflow-y-auto custom-scrollbar">
+              <div className="flex-1 p-2 md:p-4 bg-white">
 
                 {activeTab === 'report' && (
                   <div className="animate-in fade-in duration-300">
@@ -656,9 +656,11 @@ export default function BusinessBooster() {
                           <div className="bg-red-600 text-white px-3 py-1 rounded-xl text-xs sm:text-sm shadow-sm">{20.2}</div>
                         </div>
                       </div>
-                              {/* Actionable Issues */}
-                    <div className="mb-10 border border-red-200 rounded-2xl p-6 sm:p-8 bg-white shadow-sm relative overflow-hidden">
-                      <div className="text-center mb-6">
+                    </div>
+
+                    {/* Actionable Issues */}
+                    <div className="mb-6 border border-red-200 rounded-2xl p-5 sm:p-6 bg-white shadow-sm relative overflow-hidden">
+                      <div className="text-center mb-5">
                         <h3 className="text-lg sm:text-xl font-bold text-slate-800 mb-4">
                           <span className="mr-2">⚠️</span> {businessName || 'Your Business'} rank kyun nahi kar raha?
                         </h3>
@@ -712,7 +714,6 @@ export default function BusinessBooster() {
                         </button>
                       </div>
                     </div>
-                  </div>
 
                     {/* Local SEO Map Grid */}
                     <div className="mb-5 mt-6 border border-slate-200 rounded-2xl p-3 sm:p-4 bg-white shadow-sm">
