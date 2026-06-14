@@ -16,8 +16,48 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KhataHisab - Business & Utility Tools",
-  description: "A collection of premium, fast, and free online tools by KhataHisab.",
+  title: {
+    template: '%s | KhataHisab Tools',
+    default: 'KhataHisab Tools - Superfast Free Online Utilities',
+  },
+  description: 'A premium collection of high-performance, free online tools. Including PDF Magic, Background Remover, QR Generator, and more. 100% Secure & Local Processing.',
+  keywords: ['free online tools', 'pdf tools', 'background remover', 'qr code generator', 'json formatter', 'age calculator', 'image compressor', 'khatahisab tools'],
+  authors: [{ name: 'KhataHisab' }],
+  creator: 'KhataHisab',
+  publisher: 'KhataHisab',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://tools.khatahisab.in',
+    siteName: 'KhataHisab Tools',
+    title: 'KhataHisab Tools - Superfast Free Online Utilities',
+    description: 'A premium collection of high-performance, free online tools. No ads, 100% secure.',
+    images: [
+      {
+        url: 'https://tools.khatahisab.in/logo.svg', // Fallback, usually an actual image works best
+        width: 800,
+        height: 600,
+        alt: 'KhataHisab Tools Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'KhataHisab Tools - Free Online Utilities',
+    description: 'A premium collection of free online tools. 100% Secure & Local Processing.',
+    creator: '@khatahisab',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
