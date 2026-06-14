@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Calculator, FileText, Image as ImageIcon, Code, Type, Clock, Search, Wand2, QrCode, Sparkles } from "lucide-react";
+import { ArrowRight, Calculator, FileText, Image as ImageIcon, Code, Type, Clock, Search, Wand2, QrCode, Sparkles, Rocket } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
@@ -11,6 +11,13 @@ function HomeContent() {
   const searchQuery = searchParams.get("q") || "";
 
   const tools = [
+    {
+      title: "AI Business Booster",
+      description: "Automate your Local SEO, Google Profile, review replies, and social posts.",
+      icon: <Rocket className="w-6 h-6 text-blue-600" />,
+      href: "/business-booster",
+      category: "Marketing",
+    },
     {
       title: "Age Calculator",
       description: "Calculate your exact age in days, months, and years instantly.",

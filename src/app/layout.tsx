@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Crop, Wand2, Code, Image as ImageIcon, Type, Sparkles } from "lucide-react";
+import { Crop, Wand2, Code, Image as ImageIcon, Type, Sparkles, Rocket } from "lucide-react";
 import Link from "next/link";
 import "./globals.css";
 import { GlobalSearch } from "@/components/GlobalSearch";
@@ -102,6 +102,10 @@ export default function RootLayout({
             <div className="sticky top-24 bg-white/60 backdrop-blur-xl border border-white/80 rounded-3xl p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 px-2">Featured Tools</h3>
               <nav className="space-y-1">
+                <Link href="/business-booster" className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 transition-all text-slate-600 hover:text-blue-600 group">
+                  <div className="p-1.5 rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors"><Rocket className="w-4 h-4" /></div>
+                  <span className="font-semibold text-sm">AI Business Booster</span>
+                </Link>
                 <Link href="/pdf-magic" className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 transition-all text-slate-600 hover:text-orange-600 group">
                   <div className="p-1.5 rounded-lg bg-orange-100 text-orange-600 group-hover:bg-orange-500 group-hover:text-white transition-colors"><Crop className="w-4 h-4" /></div>
                   <span className="font-semibold text-sm">Label Crop Pro</span>
