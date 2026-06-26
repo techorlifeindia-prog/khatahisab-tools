@@ -4,6 +4,7 @@ import { Crop, Wand2, Code, Image as ImageIcon, Type, Sparkles, Rocket } from "l
 import Link from "next/link";
 import "./globals.css";
 import { GlobalSearch } from "@/components/GlobalSearch";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -96,7 +97,7 @@ export default function RootLayout({
         </header>
 
         {/* Main Content Area */}
-        <div className="flex-1 w-full px-2 md:px-4 py-4 md:py-8 relative z-10 flex gap-2 md:gap-4 lg:gap-6">
+        <div className="flex-1 w-full px-2 md:px-4 py-2 md:py-4 relative z-10 flex gap-2 md:gap-4 lg:gap-6">
           {/* Left Sidebar - Quick Links */}
           <aside className="hidden lg:block w-64 shrink-0">
             <div className="sticky top-24 bg-white/60 backdrop-blur-xl border border-white/80 rounded-3xl p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
@@ -165,6 +166,7 @@ export default function RootLayout({
             &copy; {new Date().getFullYear()} KhataHisab. All rights reserved. Built with ⚡ Speed & Privacy.
           </div>
         </footer>
+        <Analytics />
       </body>
     </html>
   );

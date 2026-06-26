@@ -76,9 +76,9 @@ function HomeContent() {
   );
 
   return (
-    <div className="max-w-5xl mx-auto flex flex-col gap-8 md:gap-10">
+    <div className="max-w-5xl mx-auto flex flex-col gap-4 md:gap-6">
       {/* Hero Section */}
-      <section className="text-center pt-0 md:pt-4 flex flex-col items-center gap-4 md:gap-6 px-2">
+      <section className="text-center pt-0 flex flex-col items-center gap-2 md:gap-3 px-2">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight text-balance">
           Superfast Free <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-transparent bg-clip-text block sm:inline">Online Tools</span>
         </h1>
