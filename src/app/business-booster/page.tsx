@@ -450,18 +450,31 @@ export default function BusinessBooster() {
         {/* STEP 2: SCANNING ANIMATION */}
         {step === 'scanning' && (
           <div className="animate-in fade-in duration-500 flex flex-col items-center py-10">
-            {/* Hacker-style Radar / Pulse Animation */}
+            {/* Advanced Smart Radar / Pulse Animation */}
             <div className="relative w-48 h-48 mb-12 flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full border-2 border-blue-500/30 animate-[ping_3s_linear_infinite]"></div>
-              <div className="absolute inset-4 rounded-full border-2 border-indigo-500/40 animate-[ping_2s_linear_infinite]" style={{ animationDelay: '0.5s' }}></div>
-              <div className="absolute inset-8 rounded-full border-2 border-purple-500/50 animate-[ping_1.5s_linear_infinite]" style={{ animationDelay: '1s' }}></div>
+              {/* Pulsing rings */}
+              <div className="absolute inset-0 rounded-full border border-blue-500/20 bg-blue-50/10 animate-[ping_3s_ease-out_infinite]"></div>
+              <div className="absolute inset-4 rounded-full border border-indigo-500/30 bg-indigo-50/20 animate-[ping_2s_ease-out_infinite]" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute inset-8 rounded-full border-2 border-purple-500/40 animate-[ping_1.5s_ease-out_infinite]" style={{ animationDelay: '1s' }}></div>
 
-              <div className="relative z-10 w-24 h-24 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full shadow-[0_0_40px_rgba(79,70,229,0.5)] flex items-center justify-center border-4 border-white">
-                <Store className="w-10 h-10 text-white" />
+              {/* Central Core (Changes based on step) */}
+              <div className="relative z-20 w-24 h-24 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 rounded-full shadow-[0_0_40px_rgba(79,70,229,0.5)] flex items-center justify-center border-4 border-white transition-all duration-500">
+                <div className="absolute inset-0 rounded-full bg-white/20 animate-pulse"></div>
+                {currentScanStep === 0 && <Store className="w-10 h-10 text-white relative z-10 animate-[bounce_2s_infinite]" />}
+                {currentScanStep === 1 && <Search className="w-10 h-10 text-white relative z-10 animate-pulse" />}
+                {currentScanStep === 2 && <TrendingUp className="w-10 h-10 text-white relative z-10 animate-[bounce_2s_infinite]" />}
+                {currentScanStep === 3 && <MessageSquare className="w-10 h-10 text-white relative z-10 animate-pulse" />}
+                {currentScanStep === 4 && <ImageIcon className="w-10 h-10 text-white relative z-10 animate-[bounce_2s_infinite]" />}
+                {currentScanStep >= 5 && <CheckCircle2 className="w-10 h-10 text-white relative z-10" />}
               </div>
 
-              {/* Scanning Laser Line */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.8)] z-20 animate-[scan_2s_ease-in-out_infinite_alternate]"></div>
+              {/* Floating Tech Nodes */}
+              <div className="absolute top-0 right-2 w-10 h-10 bg-white rounded-xl shadow-lg border border-slate-100 flex items-center justify-center animate-[bounce_3s_infinite] z-30"><Search className="w-5 h-5 text-blue-500" /></div>
+              <div className="absolute bottom-2 -left-2 w-10 h-10 bg-white rounded-xl shadow-lg border border-slate-100 flex items-center justify-center animate-[bounce_3.5s_infinite] z-30" style={{ animationDelay: '0.5s' }}><BarChart3 className="w-5 h-5 text-emerald-500" /></div>
+              <div className="absolute top-1/2 -right-8 w-10 h-10 bg-white rounded-xl shadow-lg border border-slate-100 flex items-center justify-center animate-[bounce_4s_infinite] z-30" style={{ animationDelay: '1s' }}><MessageSquare className="w-5 h-5 text-purple-500" /></div>
+
+              {/* Scanning Laser Line (Thicker and Glowing) */}
+              <div className="absolute top-0 -left-10 right-10 w-[150%] h-1 bg-cyan-400 shadow-[0_0_20px_4px_rgba(34,211,238,0.7)] z-40 animate-[scan_2s_ease-in-out_infinite_alternate] rounded-full"></div>
             </div>
 
             <h2 className="text-2xl font-black text-slate-800 mb-2">Analyzing <span className="text-blue-600">{businessName}</span></h2>
