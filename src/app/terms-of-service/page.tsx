@@ -12,12 +12,16 @@ export default function TermsOfServicePage() {
     <div className="w-full max-w-4xl mx-auto px-4 py-12 md:py-16">
       
       {/* Header */}
-      <div className="mb-12 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 text-blue-600 mb-6">
-          <FileText className="w-8 h-8" />
+      <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-50 text-blue-600 shrink-0">
+            <FileText className="w-5 h-5" />
+          </div>
+          <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Terms of Service</h1>
         </div>
-        <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">Terms of Service</h1>
-        <p className="text-slate-500 font-medium">Last updated: {lastUpdated}</p>
+        <div className="text-sm text-slate-500 font-medium bg-slate-100/80 px-3 py-1.5 rounded-lg w-max">
+          Updated: {lastUpdated}
+        </div>
       </div>
 
       {/* Content */}
