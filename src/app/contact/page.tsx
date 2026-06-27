@@ -10,13 +10,17 @@ export default function ContactPage() {
     <div className="w-full max-w-5xl mx-auto px-4 py-12 md:py-20">
       
       {/* Header */}
-      <div className="mb-16 text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 text-blue-600 mb-6">
-          <Mail className="w-8 h-8" />
+      <div className="mb-10">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-3">
+          <div className="flex items-center gap-3">
+            <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-50 text-blue-600 shrink-0">
+              <Mail className="w-5 h-5" />
+            </div>
+            <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Get in Touch</h1>
+          </div>
         </div>
-        <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">Get in Touch</h1>
-        <p className="text-slate-500 font-medium max-w-xl mx-auto text-lg">
-          Have a question about our tools or need support? We'd love to hear from you. Drop us a message below!
+        <p className="text-slate-500 font-medium text-sm sm:text-base">
+          Have a question about our tools or need support? Drop us a message below!
         </p>
       </div>
 
