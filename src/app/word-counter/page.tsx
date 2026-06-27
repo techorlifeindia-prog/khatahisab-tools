@@ -108,6 +108,24 @@ export default function WordCounterPage() {
           )}
         </div>
       </div>
+
+      {/* SEO Article Section */}
+      <article className="mt-12 bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm text-slate-600">
+        <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-4">Why Use an Online Word & Character Counter?</h2>
+        <div className="space-y-4 text-sm md:text-base leading-relaxed">
+          <p>
+            Whether you are a student writing an essay, a professional crafting an email, or a digital marketer optimizing SEO content, knowing your exact word and character count is crucial. Many platforms like Twitter (X), Instagram, and Google Meta Descriptions have strict character limits. Our free <strong>Word and Character Counter</strong> helps you stay within these limits effortlessly.
+          </p>
+          <p>
+            Unlike traditional word processors, this tool works entirely in your browser. This means <strong>100% privacy</strong>—your text is never uploaded to any server. It instantly calculates words, characters (with and without spaces), sentences, and paragraphs as you type.
+          </p>
+          <h3 className="text-lg font-bold text-slate-800 mt-6 mb-2">The Importance of SEO Keyword Density</h3>
+          <p>
+            For bloggers and content creators, keyword stuffing can hurt your Google rankings. Our built-in <strong>Keyword Density Checker</strong> extracts the most frequently used words in your text and displays their percentage. This allows you to optimize your articles naturally, ensuring you target the right SEO keywords without getting penalized by search engines.
+          </p>
+        </div>
+      </article>
+
     </div>
   );
 }
