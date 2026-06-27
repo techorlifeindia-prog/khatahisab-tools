@@ -83,7 +83,10 @@ export default function RootLayout({
           <div className="w-full px-2 md:px-4 h-16 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity">
               <img src="/logo.svg" alt="KhataHisab Logo" className="w-10 h-10 object-contain drop-shadow-sm" />
-              <span className="font-extrabold text-2xl tracking-tight text-slate-900">Khata<span className="text-red-600">Hisab</span></span>
+              <div className="flex items-center gap-2">
+                <span className="font-extrabold text-2xl tracking-tight text-slate-900">Khata<span className="text-red-600">Hisab</span></span>
+                <span className="bg-blue-600 text-white px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider shadow-sm mt-1">Tools</span>
+              </div>
             </Link>
 
             <GlobalSearch />
