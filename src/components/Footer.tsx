@@ -8,27 +8,27 @@ export function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-6 py-16 md:py-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 pt-10 pb-6 md:pt-12 md:pb-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8">
           
           {/* Company Info */}
           <div className="md:col-span-5 lg:col-span-4">
-            <Link href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity mb-6">
+            <Link href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity mb-4">
               <img src="/logo.svg" alt="KhataHisab Logo" className="w-8 h-8 object-contain brightness-0 invert" />
               <div className="flex items-center gap-2">
                 <span className="font-extrabold text-2xl tracking-tight text-white">Khata<span className="text-red-500">Hisab</span></span>
                 <span className="bg-blue-600/20 text-blue-400 px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-widest border border-blue-500/20">Tools</span>
               </div>
             </Link>
-            <p className="text-slate-400 text-sm leading-relaxed mb-8 max-w-sm font-medium">
+            <p className="text-slate-400 text-sm leading-relaxed mb-3 max-w-sm font-medium">
               Empowering businesses and individuals with fast, secure, and fully local AI & Utility tools. <span className="text-slate-300">No server uploads, 100% privacy guaranteed.</span>
             </p>
-            <div className="flex flex-col gap-4">
-              <div className="flex items-start gap-3 text-sm text-slate-400 bg-slate-800/30 p-4 rounded-2xl border border-slate-800/50 backdrop-blur-sm w-max">
-                <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                <span className="font-medium leading-tight">Powered by <br/><span className="text-white font-bold text-base">Madhav mayur mart LLP</span></span>
+            <div className="flex flex-col gap-2.5">
+              <div className="flex items-start gap-2.5 text-sm text-slate-400 bg-slate-800/30 px-3 py-2.5 rounded-xl border border-slate-800/50 backdrop-blur-sm w-max">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <span className="font-medium leading-tight text-xs">Powered by <br/><span className="text-white font-bold text-sm">Madhav mayur mart LLP</span></span>
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-1.5">
                 <a href="tel:+919346037211" className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-blue-400 transition-colors font-medium">
                   <span className="w-4 h-4 flex items-center justify-center shrink-0">📞</span>
                   +91 93460 37211
@@ -89,7 +89,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-6 pt-5 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-slate-500 font-medium text-center md:text-left">
             &copy; {new Date().getFullYear()} <span className="text-slate-300 font-bold">Madhav mayur mart LLP</span>. All rights reserved.
           </p>
