@@ -307,18 +307,20 @@ export default function BusinessBooster() {
               <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"></div>
 
               <div className="p-5 sm:p-6 md:p-8">
-                {/* App-Style Header Inside Card */}
-                <div className="text-center mb-6 md:mb-8 mt-2">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-blue-50 text-blue-600 mb-3 relative shadow-inner border border-blue-100">
+                {/* COMPACT App-Style Header */}
+                <div className="flex flex-row items-center gap-3 sm:gap-4 mb-6 md:mb-8 mt-1">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100 shadow-sm relative">
                     <div className="absolute inset-0 rounded-full bg-blue-400 opacity-20 animate-ping"></div>
-                    <TrendingUp className="w-7 h-7 relative z-10" />
+                    <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" strokeWidth={2.5} />
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-2 tracking-tight leading-tight">
-                    Supercharge Your <br className="sm:hidden" /> Local Business
-                  </h2>
-                  <p className="text-slate-500 text-[13px] md:text-sm px-1 max-w-lg mx-auto font-medium">
-                    Get an instant AI audit, 1-click review replies, and auto-generated social posts. Rank #1 on Google.
-                  </p>
+                  <div className="text-left">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-800 tracking-tight leading-tight">
+                      Supercharge Your Local Business
+                    </h2>
+                    <p className="text-slate-500 text-xs sm:text-sm font-medium mt-0.5 max-w-lg">
+                      Get an instant AI audit, 1-click review replies, and auto-generated social posts. Rank #1 on Google.
+                    </p>
+                  </div>
                 </div>
 
                 <form onSubmit={startScan} className="space-y-5">
