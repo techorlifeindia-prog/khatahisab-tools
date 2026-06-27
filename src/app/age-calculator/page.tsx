@@ -28,14 +28,15 @@ function AgeCalculatorContent() {
     <div className="w-full max-w-4xl mx-auto overflow-hidden px-2 pb-10">
       
       {/* Main App Card */}
-      <div className="bg-white rounded-[24px] border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden mt-4 md:mt-8">
+      <div className="bg-white rounded-[24px] border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden mt-4 md:mt-6">
+        
         {/* Top Gradient Bar */}
         <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-indigo-500 via-blue-500 to-sky-500"></div>
 
-        <div className="p-5 sm:p-6 md:p-8">
+        <div className="p-4 sm:p-5 md:p-6 relative z-10">
           
           {/* Share Button (Top Right) */}
-          <div className="absolute top-5 right-5 sm:top-6 sm:right-6">
+          <div className="absolute top-4 right-4 sm:top-5 sm:right-5">
             <ShareButton 
               title="Age Calculator - Find your exact age in seconds!" 
               text="⏳ Check out this superfast age calculator that calculates your exact age in years, months, days, hours, and even seconds! 👇"
@@ -43,18 +44,17 @@ function AgeCalculatorContent() {
             />
           </div>
 
-          {/* App-Style Header Inside Card */}
-          <div className="text-center mb-8 md:mb-10 mt-6 md:mt-2">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-indigo-50 text-indigo-600 mb-4 relative shadow-inner border border-indigo-100">
-              <div className="absolute inset-0 rounded-full bg-indigo-400 opacity-20 animate-ping"></div>
-              <Clock className="w-7 h-7 relative z-10" />
+          {/* COMPACT App-Style Header */}
+          <div className="flex items-center gap-3 sm:gap-4 mb-6 md:mb-8 mt-1 pr-16">
+            <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100 shadow-sm">
+              <Clock className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.5} />
             </div>
-            <h1 className="text-2xl md:text-3xl font-black text-slate-900 mb-2 tracking-tight leading-tight">
-              Age Calculator
-            </h1>
-            <p className="text-slate-500 text-[13px] md:text-sm px-1 max-w-lg mx-auto font-medium">
-              Calculate your exact age in years, months, and days perfectly.
-            </p>
+            <div className="text-left">
+              <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-800 tracking-tight leading-tight">Age Calculator</h1>
+              <p className="text-slate-500 text-xs sm:text-sm font-medium mt-0.5">
+                Calculate your exact age perfectly.
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
