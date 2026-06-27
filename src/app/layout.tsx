@@ -6,6 +6,7 @@ import "./globals.css";
 import { GlobalSearch } from "@/components/GlobalSearch";
 import { Analytics } from "@vercel/analytics/react";
 import { MobileMenu } from "@/components/MobileMenu";
+import { Footer } from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -175,11 +176,7 @@ export default function RootLayout({
         </div>
 
         {/* Footer */}
-        <footer className="border-t border-white/50 py-8 bg-white/50 backdrop-blur-sm relative z-10">
-          <div className="w-full px-2 md:px-4 text-center text-sm font-medium text-slate-500">
-            &copy; {new Date().getFullYear()} KhataHisab. All rights reserved. Built with ⚡ Speed & Privacy.
-          </div>
-        </footer>
+        <Footer />
         <Analytics />
       </body>
     </html>
