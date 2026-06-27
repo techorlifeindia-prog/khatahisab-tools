@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Crop, Wand2, Code, Image as ImageIcon, Type, Sparkles, Rocket } from "lucide-react";
 import Link from "next/link";
 import "./globals.css";
 import { GlobalSearch } from "@/components/GlobalSearch";
 import { Analytics } from "@vercel/analytics/react";
+import { MobileMenu } from "@/components/MobileMenu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,6 +62,13 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -89,13 +97,16 @@ export default function RootLayout({
               </div>
             </Link>
 
-            <GlobalSearch />
+            <GlobalSearch className="max-w-md hidden md:block ml-8" />
 
-            <nav className="hidden md:flex gap-8">
-              <a href="#" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">All Tools</a>
-              <a href="#" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Developer</a>
-              <a href="#" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Media</a>
-            </nav>
+            <div className="flex items-center gap-4">
+              <nav className="hidden md:flex gap-8">
+                <a href="#" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">All Tools</a>
+                <a href="#" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Developer</a>
+                <a href="#" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Media</a>
+              </nav>
+              <MobileMenu />
+            </div>
           </div>
         </header>
 
@@ -158,7 +169,7 @@ export default function RootLayout({
             </div>
           </aside>
 
-          <main className="flex-1 min-w-0">
+          <main className="flex-1 min-w-0 overflow-x-hidden w-full max-w-full">
             {children}
           </main>
         </div>

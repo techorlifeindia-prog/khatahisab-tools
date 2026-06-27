@@ -301,117 +301,127 @@ export default function BusinessBooster() {
 
         {/* STEP 1: INPUT FORM */}
         {step === 'input' && (
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="text-center mb-4">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 mb-3 relative">
-                <div className="absolute inset-0 rounded-full bg-blue-400 opacity-20 animate-ping"></div>
-                <TrendingUp className="w-6 h-6 relative z-10" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-black text-slate-800 mb-2 tracking-tight">Supercharge Your Local Business</h2>
-              <p className="text-slate-500 text-sm md:text-base max-w-xl mx-auto">Get an instant AI audit, 1-click review replies, and auto-generated social posts. Rank #1 on Google.</p>
-            </div>
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-2xl mx-auto">
+            
+            <div className="bg-white rounded-[24px] border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"></div>
 
-            <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"></div>
+              <div className="p-5 sm:p-6 md:p-8">
+                {/* App-Style Header Inside Card */}
+                <div className="text-center mb-6 md:mb-8 mt-2">
+                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-blue-50 text-blue-600 mb-3 relative shadow-inner border border-blue-100">
+                    <div className="absolute inset-0 rounded-full bg-blue-400 opacity-20 animate-ping"></div>
+                    <TrendingUp className="w-7 h-7 relative z-10" />
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-2 tracking-tight leading-tight">
+                    Supercharge Your <br className="sm:hidden" /> Local Business
+                  </h2>
+                  <p className="text-slate-500 text-[13px] md:text-sm px-1 max-w-lg mx-auto font-medium">
+                    Get an instant AI audit, 1-click review replies, and auto-generated social posts. Rank #1 on Google.
+                  </p>
+                </div>
 
-              <form onSubmit={startScan} className="space-y-6">
-                <div className="relative">
-                  <label className="block text-sm font-bold text-slate-700 mb-2">Business Name <span className="text-red-500">*</span></label>
-                  <div className="relative z-20">
-                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                      {isSearching ? (
-                        <Loader2 className="h-5 w-5 text-blue-500 animate-spin" />
-                      ) : (
-                        <Store className="h-5 w-5 text-slate-400" />
+                <form onSubmit={startScan} className="space-y-5">
+                  <div className="relative">
+                    <label className="block text-sm font-bold text-slate-700 mb-1.5 ml-1">Business Name <span className="text-red-500">*</span></label>
+                    <div className="relative z-20">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                        {isSearching ? (
+                          <Loader2 className="h-5 w-5 text-blue-500 animate-spin" />
+                        ) : (
+                          <Store className="h-5 w-5 text-slate-400" />
+                        )}
+                      </div>
+                      <input
+                        type="text"
+                        required
+                        value={businessName}
+                        onChange={handleNameChange}
+                        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                        onFocus={() => businessName.length > 2 && setShowSuggestions(true)}
+                        className="block w-full pl-10 pr-3 py-3.5 md:py-4 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 hover:bg-slate-100/50 focus:bg-white transition-all text-slate-900 font-bold"
+                        placeholder="e.g. Sharma Sweets"
+                        autoComplete="off"
+                      />
+
+                      {/* Autocomplete Dropdown */}
+                      {showSuggestions && suggestions.length > 0 && (
+                        <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden z-50">
+                          <div className="px-3 py-2 bg-slate-50 border-b border-slate-100 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                            Google Search Results
+                          </div>
+                          <ul className="max-h-60 overflow-y-auto">
+                            {suggestions.map((suggestion, idx) => (
+                              <li
+                                key={idx}
+                                onClick={() => selectSuggestion(suggestion)}
+                                className="px-4 py-3 hover:bg-blue-50 cursor-pointer border-b border-slate-50 last:border-0 transition-colors flex items-start gap-3"
+                              >
+                                <div className="bg-slate-100 p-2 rounded-lg mt-0.5 text-slate-500 shrink-0">
+                                  <MapPin className="w-4 h-4" />
+                                </div>
+                                <div>
+                                  <h4 className="text-sm font-bold text-slate-800">{suggestion.name}</h4>
+                                  <p className="text-xs text-slate-500">{suggestion.category} • {suggestion.location}</p>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       )}
                     </div>
-                    <input
-                      type="text"
-                      required
-                      value={businessName}
-                      onChange={handleNameChange}
-                      onBlur={() => setTimeout(() => setShowSuggestions(false), 200)} // delay to allow click
-                      onFocus={() => businessName.length > 2 && setShowSuggestions(true)}
-                      className="block w-full pl-10 pr-3 py-3.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 focus:bg-white transition-all text-slate-900 font-medium"
-                      placeholder="e.g. Sharma Sweets"
-                      autoComplete="off"
-                    />
+                  </div>
 
-                    {/* Autocomplete Dropdown */}
-                    {showSuggestions && suggestions.length > 0 && (
-                      <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden z-50">
-                        <div className="px-3 py-2 bg-slate-50 border-b border-slate-100 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                          Google Search Results
-                        </div>
-                        <ul className="max-h-60 overflow-y-auto">
-                          {suggestions.map((suggestion, idx) => (
-                            <li
-                              key={idx}
-                              onClick={() => selectSuggestion(suggestion)}
-                              className="px-4 py-3 hover:bg-blue-50 cursor-pointer border-b border-slate-50 last:border-0 transition-colors flex items-start gap-3"
-                            >
-                              <div className="bg-slate-100 p-2 rounded-lg mt-0.5 text-slate-500 shrink-0">
-                                <MapPin className="w-4 h-4" />
-                              </div>
-                              <div>
-                                <h4 className="text-sm font-bold text-slate-800">{suggestion.name}</h4>
-                                <p className="text-xs text-slate-500">{suggestion.category} • {suggestion.location}</p>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
+                  <div>
+                    <label className="block text-sm font-bold text-slate-700 mb-1.5 ml-1">Business Category <span className="text-red-500">*</span></label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                        <Search className="h-5 w-5 text-slate-400" />
                       </div>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-2">Business Category <span className="text-red-500">*</span></label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                      <Search className="h-5 w-5 text-slate-400" />
+                      <input
+                        type="text"
+                        required
+                        value={businessCategory}
+                        onChange={(e) => setBusinessCategory(e.target.value)}
+                        className="block w-full pl-10 pr-3 py-3.5 md:py-4 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 hover:bg-slate-100/50 focus:bg-white transition-all text-slate-900 font-bold"
+                        placeholder="e.g. Sweet Shop, Plumber, Doctor..."
+                      />
                     </div>
-                    <input
-                      type="text"
-                      required
-                      value={businessCategory}
-                      onChange={(e) => setBusinessCategory(e.target.value)}
-                      className="block w-full pl-10 pr-3 py-3.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 focus:bg-white transition-all text-slate-900 font-medium"
-                      placeholder="e.g. Sweet Shop, Plumber, Doctor..."
-                    />
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-2">City / Location <span className="text-slate-400 font-normal">(Optional)</span></label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                      <MapPin className="h-5 w-5 text-slate-400" />
+                  <div>
+                    <label className="block text-sm font-bold text-slate-700 mb-1.5 ml-1">City / Location <span className="text-slate-400 font-normal">(Optional)</span></label>
+                    <div className="relative flex items-center">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                        <MapPin className="h-5 w-5 text-slate-400" />
+                      </div>
+                      <input
+                        type="text"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        className="block w-full pl-10 pr-24 py-3.5 md:py-4 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 hover:bg-slate-100/50 focus:bg-white transition-all text-slate-900 font-bold"
+                        placeholder="e.g. Jaipur, Rajasthan"
+                      />
+                      <button
+                        type="button"
+                        onClick={detectLocation}
+                        className="absolute right-2 px-3 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-lg transition-colors flex items-center shadow-sm"
+                      >
+                        Detect
+                      </button>
                     </div>
-                    <input
-                      type="text"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                      className="block w-full pl-10 pr-24 py-3.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 focus:bg-white transition-all text-slate-900 font-medium"
-                      placeholder="e.g. Jaipur, Rajasthan"
-                    />
+                  </div>
+
+                  <div className="pt-2">
                     <button
-                      type="button"
-                      onClick={detectLocation}
-                      className="absolute inset-y-1.5 right-1.5 px-3 bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs font-bold rounded-lg transition-colors flex items-center"
+                      type="submit"
+                      className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black py-4 rounded-xl shadow-lg shadow-blue-200 transition-all active:scale-[0.98] text-base md:text-lg"
                     >
-                      Detect
+                      <Rocket className="w-5 h-5" /> Start AI Audit
                     </button>
                   </div>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 px-4 rounded-xl shadow-lg shadow-blue-200 transition-all active:scale-[0.98] text-lg"
-                >
-                  <Rocket className="w-5 h-5" /> Start AI Audit
-                </button>
-              </form>
+                </form>
+              </div>
             </div>
 
             {/* Features Preview */}

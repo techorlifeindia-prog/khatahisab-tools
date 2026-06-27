@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, Suspense } from "react";
 
-function SearchInput() {
+function SearchInput({ className }: { className?: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get("q") || "";
@@ -28,7 +28,7 @@ function SearchInput() {
   };
 
   return (
-    <div className="relative group w-full max-w-md hidden md:block ml-8">
+    <div className={`relative group w-full ${className || ""}`}>
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
         <Search className="h-4 w-4 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
       </div>
@@ -43,10 +43,10 @@ function SearchInput() {
   );
 }
 
-export function GlobalSearch() {
+export function GlobalSearch({ className }: { className?: string }) {
   return (
-    <Suspense fallback={<div className="w-full max-w-md hidden md:block h-9 bg-slate-100/80 rounded-full animate-pulse ml-8"></div>}>
-      <SearchInput />
+    <Suspense fallback={<div className={`w-full h-9 bg-slate-100/80 rounded-full animate-pulse ${className || ""}`}></div>}>
+      <SearchInput className={className} />
     </Suspense>
   );
 }

@@ -7,7 +7,12 @@ export interface AgeResult {
   days: number;
   totalDays: number;
   totalWeeks: number;
+  totalWeeksDaysRemaining: number;
   totalMonths: number;
+  totalMonthsDaysRemaining: number;
+  totalHours: number;
+  totalMinutes: number;
+  totalSeconds: number;
   nextBirthdayDays: number | null;
 }
 
@@ -41,8 +46,16 @@ export function useAgeCalculator() {
 
     const timeDiff = end.getTime() - start.getTime();
     const totalDays = Math.floor(timeDiff / (1000 * 3600 * 24));
+    
     const totalWeeks = Math.floor(totalDays / 7);
+    const totalWeeksDaysRemaining = totalDays % 7;
+    
     const totalMonths = years * 12 + months;
+    const totalMonthsDaysRemaining = days;
+
+    const totalHours = totalDays * 24;
+    const totalMinutes = totalHours * 60;
+    const totalSeconds = totalMinutes * 60;
 
     // Next Birthday calculation
     const currentYearBirthday = new Date(start);
@@ -63,7 +76,12 @@ export function useAgeCalculator() {
       days,
       totalDays,
       totalWeeks,
+      totalWeeksDaysRemaining,
       totalMonths,
+      totalMonthsDaysRemaining,
+      totalHours,
+      totalMinutes,
+      totalSeconds,
       nextBirthdayDays,
     };
   }, [dob, currentDate]);
