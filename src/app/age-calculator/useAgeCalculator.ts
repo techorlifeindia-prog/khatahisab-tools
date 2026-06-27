@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 // [TL-AGE-H-01: Age Calculation Logic]
 export interface AgeResult {
@@ -17,10 +18,18 @@ export interface AgeResult {
 }
 
 export function useAgeCalculator() {
+  const searchParams = useSearchParams();
   const [dob, setDob] = useState<string>('');
   const [currentDate, setCurrentDate] = useState<string>(
     new Date().toISOString().split('T')[0]
   );
+
+  useEffect(() => {
+    const dobParam = searchParams?.get('dob');
+    const currentParam = searchParams?.get('currentDate');
+    if (dobParam) setDob(dobParam);
+    if (currentParam) setCurrentDate(currentParam);
+  }, [searchParams]);
 
   const calculateAge = useMemo((): AgeResult | null => {
     if (!dob || !currentDate) return null;

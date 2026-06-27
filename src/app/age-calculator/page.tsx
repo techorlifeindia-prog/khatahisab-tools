@@ -3,10 +3,26 @@
 import { useAgeCalculator } from "./useAgeCalculator";
 import { Calendar, Clock, Heart, CalendarDays } from "lucide-react";
 import { ShareButton } from "@/components/ShareButton";
+import { Suspense, useEffect, useState } from "react";
 
 // [TL-AGE-F-01: Age Calculator Page]
 export default function AgeCalculatorPage() {
+  return (
+    <Suspense fallback={<div className="w-full min-h-[400px] flex items-center justify-center text-slate-400 font-medium">Loading Calculator...</div>}>
+      <AgeCalculatorContent />
+    </Suspense>
+  );
+}
+
+function AgeCalculatorContent() {
   const { dob, setDob, currentDate, setCurrentDate, result } = useAgeCalculator();
+  const [shareUrl, setShareUrl] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setShareUrl(`${window.location.origin}${window.location.pathname}?dob=${dob}&currentDate=${currentDate}`);
+    }
+  }, [dob, currentDate]);
 
   return (
     <div className="w-full max-w-4xl mx-auto overflow-hidden px-2 pb-10">
@@ -23,6 +39,7 @@ export default function AgeCalculatorPage() {
             <ShareButton 
               title="Age Calculator - Find your exact age in seconds!" 
               text="⏳ Check out this superfast age calculator that calculates your exact age in years, months, days, hours, and even seconds! 👇"
+              url={dob ? shareUrl : undefined}
             />
           </div>
 
