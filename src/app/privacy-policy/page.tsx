@@ -86,6 +86,7 @@ export default function PrivacyPolicyPage() {
           </p>
           <div className="text-slate-700 font-medium space-y-1">
             <p><strong>Company:</strong> Madhav mayur mart LLP</p>
+            <p><strong>Phone:</strong> <a href="tel:+919346037211" className="text-blue-600 hover:underline">+91 93460 37211</a></p>
             <p><strong>Email:</strong> <a href="mailto:support@khatahisab.in" className="text-blue-600 hover:underline">support@khatahisab.in</a></p>
           </div>
         </section>

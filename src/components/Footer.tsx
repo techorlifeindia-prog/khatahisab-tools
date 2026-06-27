@@ -28,10 +28,16 @@ export function Footer() {
                 <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                 <span className="font-medium leading-tight">Powered by <br/><span className="text-white font-bold text-base">Madhav mayur mart LLP</span></span>
               </div>
-              <a href="mailto:support@khatahisab.in" className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-blue-400 transition-colors font-medium">
-                <Mail className="w-4 h-4 shrink-0" />
-                support@khatahisab.in
-              </a>
+              <div className="flex flex-col gap-2">
+                <a href="tel:+919346037211" className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-blue-400 transition-colors font-medium">
+                  <span className="w-4 h-4 flex items-center justify-center shrink-0">📞</span>
+                  +91 93460 37211
+                </a>
+                <a href="mailto:support@khatahisab.in" className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-blue-400 transition-colors font-medium">
+                  <Mail className="w-4 h-4 shrink-0" />
+                  support@khatahisab.in
+                </a>
+              </div>
             </div>
           </div>
 
