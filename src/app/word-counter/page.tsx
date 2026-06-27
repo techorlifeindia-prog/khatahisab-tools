@@ -9,14 +9,19 @@ export default function WordCounterPage() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
-      {/* Header */}
-      <div className="text-center space-y-4">
-        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-          Word & Character Counter
-        </h1>
-        <p className="text-slate-600 text-lg font-medium">
-          Real-time text analysis, character count, and SEO keyword density.
-        </p>
+      {/* COMPACT App-Style Header */}
+      <div className="flex flex-row items-center gap-3 sm:gap-4 mb-2 md:mb-4 mt-1">
+        <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center border border-sky-100 shadow-sm relative">
+          <Type className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" strokeWidth={2.5} />
+        </div>
+        <div className="text-left">
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-800 tracking-tight leading-tight">
+            Word & Character Counter
+          </h1>
+          <p className="text-slate-500 text-xs sm:text-sm font-medium mt-0.5 max-w-lg">
+            Real-time text analysis, character count, and SEO keyword density.
+          </p>
+        </div>
       </div>
 
       {/* Top Stats Cards */}
