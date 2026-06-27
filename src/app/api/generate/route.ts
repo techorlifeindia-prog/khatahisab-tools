@@ -7,7 +7,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 export async function POST(req: Request) {
   try {
     const { action, prompt, tone, platform, businessName, location } = await req.json();
-    
+
     if (!process.env.GEMINI_API_KEY) {
       return NextResponse.json({ error: 'Gemini API key is not configured' }, { status: 500 });
     }
@@ -38,7 +38,7 @@ Social Media Post:`;
     const responseText = result.response.text();
 
     return NextResponse.json({ result: responseText });
-    
+
   } catch (error) {
     console.error('Gemini API Error:', error);
     return NextResponse.json({ error: 'Failed to generate content' }, { status: 500 });

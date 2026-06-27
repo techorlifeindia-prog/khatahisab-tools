@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, Rocket, Search, Store, MapPin, CheckCircle2, Loader2, BarChart3, MessageSquare, Image as ImageIcon, QrCode, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 
@@ -61,10 +61,17 @@ export default function BusinessBooster() {
   const [isGeneratingQr, setIsGeneratingQr] = useState(false);
   const [generatedQrUrl, setGeneratedQrUrl] = useState('');
 
+  const skipSearchRef = useRef(false);
+
   useEffect(() => {
     if (businessName.length < 3) {
       setShowSuggestions(false);
       setSuggestions([]);
+      return;
+    }
+
+    if (skipSearchRef.current) {
+      skipSearchRef.current = false;
       return;
     }
 
@@ -103,6 +110,7 @@ export default function BusinessBooster() {
   };
 
   const selectSuggestion = (suggestion: { name: string, category: string, location: string }) => {
+    skipSearchRef.current = true;
     setBusinessName(suggestion.name);
     setBusinessCategory(suggestion.category);
     setLocation(suggestion.location);
