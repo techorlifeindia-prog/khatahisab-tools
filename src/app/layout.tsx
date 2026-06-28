@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Crop, Wand2, Code, Image as ImageIcon, Type, Sparkles, Rocket } from "lucide-react";
+import { Crop, Wand2, Code, Image as ImageIcon, Type, Sparkles, Rocket, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import "./globals.css";
 import { GlobalSearch } from "@/components/GlobalSearch";
@@ -149,6 +149,14 @@ export default function RootLayout({
                 <Link href="/bg-remover" className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 transition-all text-slate-600 hover:text-pink-600 group">
                   <div className="p-1.5 rounded-lg bg-pink-100 text-pink-600 group-hover:bg-pink-500 group-hover:text-white transition-colors"><Sparkles className="w-4 h-4" /></div>
                   <span className="font-semibold text-sm">Background Remover</span>
+                </Link>
+              </nav>
+
+              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 px-2 mt-8">Admin</h3>
+              <nav className="space-y-1">
+                <Link href="/admin/users" className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 transition-all text-slate-600 hover:text-emerald-600 group">
+                  <div className="p-1.5 rounded-lg bg-emerald-100 text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white transition-colors"><ShieldCheck className="w-4 h-4" /></div>
+                  <span className="font-semibold text-sm">Users Panel</span>
                 </Link>
               </nav>
 
