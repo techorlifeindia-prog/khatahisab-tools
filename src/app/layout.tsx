@@ -7,6 +7,7 @@ import { GlobalSearch } from "@/components/GlobalSearch";
 import { Analytics } from "@vercel/analytics/react";
 import { MobileMenu } from "@/components/MobileMenu";
 import { Footer } from "@/components/Footer";
+import { AuthProvider } from "@/components/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -80,6 +81,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col font-sans antialiased bg-slate-50 text-slate-900 relative overflow-x-hidden`}
       >
+        <AuthProvider>
         {/* Animated Background Blobs */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-400/20 blur-[100px] animate-pulse"></div>
@@ -178,6 +180,7 @@ export default function RootLayout({
         {/* Footer */}
         <Footer />
         <Analytics />
+        </AuthProvider>
       </body>
     </html>
   );

@@ -25,6 +25,29 @@ async function setup() {
         referer TEXT
       );
     `);
+
+    // SaaS Tables
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        email TEXT UNIQUE NOT NULL,
+        name TEXT,
+        plan TEXT DEFAULT 'free',
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );
+    `);
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS connected_accounts (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        provider TEXT NOT NULL,
+        access_token TEXT,
+        refresh_token TEXT,
+        business_profile_id TEXT,
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+      );
+    `);
     console.log("Database tables created successfully!");
   } catch (err) {
     console.error("Error creating tables:", err);
