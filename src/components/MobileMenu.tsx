@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,14 +8,32 @@ import { usePathname } from "next/navigation";
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef<HTMLDivElement>(null);
 
   // Auto-close menu when the route changes (e.g. when opening a tool)
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
+  // Close menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
+
   return (
-    <div className="md:hidden">
+    <div className="md:hidden" ref={menuRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className="p-2 text-slate-600 hover:text-blue-600 bg-slate-100 rounded-lg transition-colors"
@@ -28,9 +46,9 @@ export function MobileMenu() {
           <nav className="flex flex-col gap-4">
             <Link href="/" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-700 hover:text-blue-600">All Tools</Link>
             <div className="h-px w-full bg-slate-100"></div>
-            <Link href="#" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-700 hover:text-blue-600">Developer</Link>
+            <Link href="/?q=Developer" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-700 hover:text-blue-600">Developer</Link>
             <div className="h-px w-full bg-slate-100"></div>
-            <Link href="#" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-700 hover:text-blue-600">Media</Link>
+            <Link href="/?q=Media" onClick={() => setIsOpen(false)} className="text-base font-semibold text-slate-700 hover:text-blue-600">Media</Link>
           </nav>
         </div>
       )}

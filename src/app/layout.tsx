@@ -104,9 +104,9 @@ export default function RootLayout({
 
             <div className="flex items-center gap-4">
               <nav className="hidden md:flex gap-8">
-                <a href="#" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">All Tools</a>
-                <a href="#" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Developer</a>
-                <a href="#" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Media</a>
+                <Link href="/" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">All Tools</Link>
+                <Link href="/?q=Developer" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Developer</Link>
+                <Link href="/?q=Media" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Media</Link>
               </nav>
               <MobileMenu />
             </div>
