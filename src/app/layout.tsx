@@ -62,9 +62,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  manifest: '/manifest.json',
 };
 
 export const viewport: Viewport = {
+  themeColor: '#0B0F19',
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
