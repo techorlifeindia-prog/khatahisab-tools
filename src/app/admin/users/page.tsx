@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 import clientPromise from "@/lib/mongodb";
-import { Users, Mail, Clock, ShieldCheck } from "lucide-react";
+import { Mail, ShieldCheck } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
