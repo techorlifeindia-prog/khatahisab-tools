@@ -14,7 +14,7 @@ export function Footer() {
           {/* Company Info */}
           <div className="md:col-span-5 lg:col-span-4">
             <Link href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity mb-4">
-              <img src="/logo.svg" alt="KhataHisab Logo" className="w-8 h-8 object-contain brightness-0 invert" />
+              <img src="/logo.svg" alt="KhataHisab Logo" className="w-8 h-8 object-contain" />
               <div className="flex items-center gap-2">
                 <span className="font-extrabold text-2xl tracking-tight text-white">Khata<span className="text-red-500">Hisab</span></span>
                 <span className="bg-blue-600/20 text-blue-400 px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-widest border border-blue-500/20">Tools</span>
