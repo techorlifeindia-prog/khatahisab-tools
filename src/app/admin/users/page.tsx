@@ -3,13 +3,15 @@ import { redirect } from "next/navigation";
 import clientPromise from "@/lib/mongodb";
 import { Mail, ShieldCheck } from "lucide-react";
 
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 export const dynamic = "force-dynamic";
 
 export default async function AdminUsersPage() {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   
-  // Security Check: Only allow techorlifeindia@gmail.com
-  if (!session || session.user?.email !== "techorlifeindia@gmail.com") {
+  // Security Check: Only allow techorlifeindia@gmail.com and demo account
+  if (!session || (session.user?.email !== "techorlifeindia@gmail.com" && session.user?.email !== "demo@khatahisab.in")) {
     redirect("/");
   }
 
