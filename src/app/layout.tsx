@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Crop, Wand2, Code, Image as ImageIcon, Type, Sparkles, Rocket, ShieldCheck, BarChart3 } from "lucide-react";
+import { Crop, Wand2, Code, Image as ImageIcon, Type, Sparkles, Rocket, ShieldCheck, BarChart3, Mail } from "lucide-react";
 import Link from "next/link";
 import "./globals.css";
 import { GlobalSearch } from "@/components/GlobalSearch";
@@ -159,6 +159,10 @@ export default function RootLayout({
                 <Link href="/admin/users" className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 transition-all text-slate-600 hover:text-emerald-600 group">
                   <div className="p-1.5 rounded-lg bg-emerald-100 text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white transition-colors"><ShieldCheck className="w-4 h-4" /></div>
                   <span className="font-semibold text-sm">Users Panel</span>
+                </Link>
+                <Link href="/admin/messages" className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 transition-all text-slate-600 hover:text-indigo-600 group">
+                  <div className="p-1.5 rounded-lg bg-indigo-100 text-indigo-600 group-hover:bg-indigo-500 group-hover:text-white transition-colors"><Mail className="w-4 h-4" /></div>
+                  <span className="font-semibold text-sm">Inbox</span>
                 </Link>
                 <a href="https://vercel.com/khata-hisab-s-projects/khatahisab-tools/analytics" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-100 transition-all text-slate-600 hover:text-blue-600 group">
                   <div className="p-1.5 rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-500 group-hover:text-white transition-colors"><BarChart3 className="w-4 h-4" /></div>

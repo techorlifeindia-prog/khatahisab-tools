@@ -1,11 +1,49 @@
-import { Mail, Phone, MapPin, Send, Building2 } from "lucide-react";
+"use client";
 
-export const metadata = {
-  title: "Contact Us | KhataHisab Tools",
-  description: "Get in touch with KhataHisab Tools. We're here to help you with our free AI and utility tools.",
-};
+import { Mail, Phone, MapPin, Send, Building2, CheckCircle2, Settings } from "lucide-react";
+import { useState } from "react";
+
+// metadata must be in a separate file or layout since this is a client component now.
+// For simplicity, we can just remove metadata export here or move it to layout.
+// Since contact is a simple page, removing metadata from here and letting global handle it is fine.
 
 export default function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      mobile: formData.get("mobile"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setIsSuccess(true);
+        (e.target as HTMLFormElement).reset();
+        setTimeout(() => setIsSuccess(false), 5000);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="w-full max-w-5xl mx-auto px-4 py-12 md:py-20">
       
@@ -84,15 +122,36 @@ export default function ContactPage() {
         <div className="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-200">
           <h2 className="text-2xl font-bold text-slate-900 mb-8">Send us a Message</h2>
           
-          <form className="space-y-6" action="mailto:support@khatahisab.in" method="GET" encType="text/plain">
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-bold text-slate-700">Your Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400"
-                placeholder="John Doe"
-              />
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            {isSuccess && (
+              <div className="bg-emerald-50 text-emerald-600 p-4 rounded-xl border border-emerald-200 flex items-center gap-3 font-medium">
+                <CheckCircle2 className="w-5 h-5" />
+                Message sent successfully! We will get back to you soon.
+              </div>
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label htmlFor="name" className="text-sm font-bold text-slate-700">Your Name</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name"
+                  required
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400"
+                  placeholder="John Doe"
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="mobile" className="text-sm font-bold text-slate-700">Mobile Number</label>
+                <input 
+                  type="tel" 
+                  id="mobile" 
+                  name="mobile"
+                  required
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400"
+                  placeholder="+91 9876543210"
+                />
+              </div>
             </div>
             
             <div className="space-y-2">
@@ -101,6 +160,7 @@ export default function ContactPage() {
                 type="text" 
                 id="subject"
                 name="subject" 
+                required
                 className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400"
                 placeholder="How can we help you?"
               />
@@ -110,8 +170,9 @@ export default function ContactPage() {
               <label htmlFor="body" className="text-sm font-bold text-slate-700">Message</label>
               <textarea 
                 id="body"
-                name="body" 
+                name="message" 
                 rows={5}
+                required
                 className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 resize-none"
                 placeholder="Write your message here..."
               ></textarea>
@@ -119,9 +180,10 @@ export default function ContactPage() {
 
             <button 
               type="submit" 
-              className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all active:scale-[0.98] shadow-lg shadow-blue-500/25"
+              disabled={isSubmitting}
+              className={`w-full flex items-center justify-center gap-2 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-blue-500/25 ${isSubmitting ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 active:scale-[0.98]'}`}
             >
-              Send Message <Send className="w-4 h-4" />
+              {isSubmitting ? <><Settings className="w-5 h-5 animate-spin"/> Sending...</> : <>Send Message <Send className="w-4 h-4" /></>}
             </button>
           </form>
         </div>
