@@ -38,6 +38,7 @@ export default function PdfMagicPage() {
 
   type TabType = 'merge' | 'split' | 'watermark' | 'crop';
   const [activeTab, setActiveTab] = useState<TabType>('merge');
+  const [isToolSelected, setIsToolSelected] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   // Load saved tab on mount
@@ -53,6 +54,7 @@ export default function PdfMagicPage() {
 
   const handleTabChange = (tab: TabType) => {
     setActiveTab(tab);
+    setIsToolSelected(true);
     localStorage.setItem('pdf-magic-tab', tab);
   };
 
@@ -232,7 +234,8 @@ export default function PdfMagicPage() {
 
       <div className={`transition-all duration-700 ease-out transform ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         {/* Tabs as Feature Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full mb-8">
+        {!isToolSelected && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full mb-8">
           {/* Merge Tab */}
           <button
             onClick={() => { handleTabChange('merge'); setError(null); }}
@@ -288,9 +291,37 @@ export default function PdfMagicPage() {
             <p className={`text-sm font-medium leading-relaxed ${activeTab === 'crop' ? 'text-orange-600/80' : 'text-slate-500'}`}>Auto-crop Flipkart & Amazon shipping labels for 4x6 thermal printers.</p>
           </button>
         </div>
+        )}
+
+        {/* Tool Header */}
+        {isToolSelected && (
+          <div className="flex items-center justify-between bg-white/60 backdrop-blur-xl border border-slate-200 p-4 sm:p-5 rounded-3xl mb-6 shadow-sm animate-in fade-in slide-in-from-top-4">
+            <div className="flex items-center gap-3 sm:gap-4">
+              {activeTab === 'merge' && <div className="p-2 sm:p-3 bg-rose-100 text-rose-600 rounded-xl"><FileText className="w-5 h-5 sm:w-6 sm:h-6" /></div>}
+              {activeTab === 'split' && <div className="p-2 sm:p-3 bg-purple-100 text-purple-600 rounded-xl"><Scissors className="w-5 h-5 sm:w-6 sm:h-6" /></div>}
+              {activeTab === 'watermark' && <div className="p-2 sm:p-3 bg-indigo-100 text-indigo-600 rounded-xl"><Stamp className="w-5 h-5 sm:w-6 sm:h-6" /></div>}
+              {activeTab === 'crop' && <div className="p-2 sm:p-3 bg-orange-100 text-orange-600 rounded-xl"><Crop className="w-5 h-5 sm:w-6 sm:h-6" /></div>}
+              <div>
+                <h2 className="font-bold text-slate-800 text-lg sm:text-xl">
+                  {activeTab === 'merge' && 'Merge PDFs'}
+                  {activeTab === 'split' && 'Split PDF'}
+                  {activeTab === 'watermark' && 'Add Watermark'}
+                  {activeTab === 'crop' && 'E-commerce Crop'}
+                </h2>
+              </div>
+            </div>
+            <button
+              onClick={() => setIsToolSelected(false)}
+              className="flex items-center gap-2 px-3 sm:px-4 py-2 text-sm font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors"
+            >
+              <span className="hidden sm:inline">Change Tool</span>
+              <span className="sm:hidden">Back</span>
+            </button>
+          </div>
+        )}
 
         {error && (
-          <div className="p-4 bg-red-50/80 backdrop-blur-md border border-red-200 text-red-600 rounded-2xl flex items-center gap-3 shadow-sm animate-in fade-in slide-in-from-top-4 max-w-4xl mx-auto w-full">
+          <div className="p-4 bg-red-50/80 backdrop-blur-md border border-red-200 text-red-600 rounded-2xl flex items-center gap-3 shadow-sm animate-in fade-in slide-in-from-top-4 max-w-4xl mx-auto w-full mb-6">
             <AlertCircle className="w-5 h-5 flex-shrink-0" />
             <p className="font-medium text-sm">{error}</p>
             <button onClick={() => setError(null)} className="ml-auto text-red-400 hover:text-red-600 font-bold text-lg">&times;</button>
@@ -300,7 +331,7 @@ export default function PdfMagicPage() {
 
 
         {/* Merge PDFs View */}
-        {activeTab === 'merge' && (
+        {activeTab === 'merge' && isToolSelected && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 animate-in fade-in zoom-in-95 duration-300">
             <div className="lg:col-span-5">
               <div
@@ -383,7 +414,7 @@ export default function PdfMagicPage() {
         )}
 
         {/* Split PDF View */}
-        {activeTab === 'split' && (
+        {activeTab === 'split' && isToolSelected && (
           <div className="max-w-3xl mx-auto bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 md:p-10 animate-in fade-in zoom-in-95 duration-300">
             {!splitFile ? (
               <div
@@ -449,7 +480,7 @@ export default function PdfMagicPage() {
         )}
 
         {/* Watermark PDF View */}
-        {activeTab === 'watermark' && (
+        {activeTab === 'watermark' && isToolSelected && (
           <div className="max-w-3xl mx-auto bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 md:p-10 animate-in fade-in zoom-in-95 duration-300">
             {!watermarkFile ? (
               <div
@@ -518,7 +549,7 @@ export default function PdfMagicPage() {
         )}
 
         {/* E-Commerce Crop View */}
-        {activeTab === 'crop' && (
+        {activeTab === 'crop' && isToolSelected && (
           <div className={`mx-auto bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 md:p-10 animate-in fade-in zoom-in-95 duration-300 ${cropFile ? 'max-w-6xl' : 'max-w-3xl'}`}>
             {!cropFile ? (
               <div
