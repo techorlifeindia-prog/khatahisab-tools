@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import clientPromise from "@/lib/mongodb";
 import { ObjectId } from "mongodb";
-import { Mail, ShieldCheck, Trash2, Calendar, Shield, Power, Edit2, CheckCircle2, XCircle, MoreVertical } from "lucide-react";
+import { Mail, Phone, ShieldCheck, Trash2, Calendar, Shield, Power, Edit2, CheckCircle2, XCircle, MoreVertical } from "lucide-react";
 import SearchForm from "./SearchForm";
 import Pagination from "./Pagination";
 import Link from "next/link";
@@ -67,7 +67,8 @@ export default async function AdminUsersPage({
   if (search) {
     query.$or = [
       { name: { $regex: search, $options: "i" } },
-      { email: { $regex: search, $options: "i" } }
+      { email: { $regex: search, $options: "i" } },
+      { mobile: { $regex: search, $options: "i" } }
     ];
   }
 
@@ -102,11 +103,11 @@ export default async function AdminUsersPage({
         <SearchForm />
       </div>
 
-      <div className="bg-white rounded-3xl border border-slate-100 shadow-sm">
-        <div className="w-full">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-slate-50 border-b border-slate-100">
+      <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+        <div className="w-full overflow-x-auto max-h-[calc(100vh-200px)] overflow-y-auto">
+          <table className="w-full text-left border-collapse min-w-[800px] relative">
+            <thead className="sticky top-0 z-10">
+              <tr className="bg-slate-50 shadow-sm border-b border-slate-200">
                 <th className="p-4 font-semibold text-slate-600 text-sm">User</th>
                 <th className="p-4 font-semibold text-slate-600 text-sm">Contact</th>
                 <th className="p-4 font-semibold text-slate-600 text-sm">Role</th>
@@ -144,9 +145,17 @@ export default async function AdminUsersPage({
                       </div>
                     </td>
                     <td className="p-4">
-                      <div className="flex items-center gap-2 text-slate-600 text-sm">
-                        <Mail className="w-4 h-4 text-slate-400" />
-                        {user.email}
+                      <div className="flex flex-col gap-1.5 text-slate-600 text-sm">
+                        <div className="flex items-center gap-2">
+                          <Mail className="w-4 h-4 text-slate-400 shrink-0" />
+                          <span className="truncate">{user.email}</span>
+                        </div>
+                        {user.mobile && (
+                          <div className="flex items-center gap-2">
+                            <Phone className="w-4 h-4 text-slate-400 shrink-0" />
+                            <span>{user.mobile}</span>
+                          </div>
+                        )}
                       </div>
                     </td>
                     <td className="p-4">
@@ -194,7 +203,8 @@ export default async function AdminUsersPage({
                               user={{
                                 _id: user._id.toString(),
                                 name: user.name || "",
-                                email: user.email || ""
+                                email: user.email || "",
+                                mobile: user.mobile || ""
                               }} 
                             />
 

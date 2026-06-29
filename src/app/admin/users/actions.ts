@@ -26,7 +26,7 @@ export async function deleteUserAction(userId: string) {
   revalidatePath("/admin/users");
 }
 
-export async function editUserAction(userId: string, data: { name: string }) {
+export async function editUserAction(userId: string, data: { name: string; mobile?: string }) {
   if (!userId) return;
   
   const currentSession = await getServerSession(authOptions);
@@ -39,7 +39,7 @@ export async function editUserAction(userId: string, data: { name: string }) {
   
   await db.collection("users").updateOne(
     { _id: new ObjectId(userId) },
-    { $set: { name: data.name } }
+    { $set: { name: data.name, mobile: data.mobile || "" } }
   );
   revalidatePath("/admin/users");
 }

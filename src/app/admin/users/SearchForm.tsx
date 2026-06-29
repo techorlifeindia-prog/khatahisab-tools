@@ -2,31 +2,42 @@
 
 import { Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 
 export default function SearchForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [search, setSearch] = useState(searchParams.get("search") || "");
 
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      const currentSearch = searchParams.get("search") || "";
+      
+      // Only push to router if the search term actually changed
+      if (currentSearch !== search.trim()) {
+        const params = new URLSearchParams(searchParams.toString());
+        if (search.trim()) {
+          params.set("search", search.trim());
+        } else {
+          params.delete("search");
+        }
+        params.set("page", "1"); // Reset page to 1 on new search
+        router.push(`?${params.toString()}`);
+      }
+    }, 400); // 400ms delay for live search
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [search, router, searchParams]);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const params = new URLSearchParams(searchParams.toString());
-    if (search.trim()) {
-      params.set("search", search.trim());
-    } else {
-      params.delete("search");
-    }
-    // Reset page to 1 on new search
-    params.set("page", "1");
-    router.push(`?${params.toString()}`);
   };
 
   return (
     <form onSubmit={handleSubmit} className="relative w-full md:w-80">
       <input
         type="text"
-        placeholder="Search by name or email..."
+        placeholder="Search by name, email, or mobile..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"

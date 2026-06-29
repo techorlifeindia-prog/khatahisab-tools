@@ -1,7 +1,8 @@
 "use client";
 
 import { Edit2, X } from "lucide-react";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { editUserAction } from "./actions";
 
 interface EditUserModalProps {
@@ -9,18 +10,25 @@ interface EditUserModalProps {
     _id: string;
     name: string;
     email: string;
+    mobile?: string;
   };
 }
 
 export default function EditUserModal({ user }: EditUserModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState(user.name || "");
+  const [mobile, setMobile] = useState(user.mobile || "");
   const [isLoading, setIsLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    await editUserAction(user._id, { name });
+    await editUserAction(user._id, { name, mobile });
     setIsLoading(false);
     setIsOpen(false);
   };
@@ -36,8 +44,8 @@ export default function EditUserModal({ user }: EditUserModalProps) {
         <span className="font-medium">Edit</span>
       </button>
 
-      {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
+      {isOpen && mounted && createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
           <div className="bg-white rounded-3xl shadow-xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-slate-50/50">
               <h3 className="font-semibold text-lg text-slate-900">Edit User Details</h3>
@@ -72,6 +80,17 @@ export default function EditUserModal({ user }: EditUserModalProps) {
               </div>
 
               <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Mobile Number</label>
+                <input 
+                  type="text" 
+                  value={mobile} 
+                  onChange={(e) => setMobile(e.target.value)}
+                  className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                  placeholder="Enter mobile number"
+                />
+              </div>
+
+              <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Name</label>
                 <input 
                   type="text" 
@@ -100,7 +119,8 @@ export default function EditUserModal({ user }: EditUserModalProps) {
               </div>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

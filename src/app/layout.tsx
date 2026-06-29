@@ -6,6 +6,7 @@ import "./globals.css";
 import { GlobalSearch } from "@/components/GlobalSearch";
 import { Analytics } from "@vercel/analytics/react";
 import { MobileMenu } from "@/components/MobileMenu";
+import { UserMenu } from "@/components/UserMenu";
 import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/components/AuthProvider";
 
@@ -110,6 +111,7 @@ export default function RootLayout({
                 <Link href="/?q=Developer" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Developer</Link>
                 <Link href="/?q=Media" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Media</Link>
               </nav>
+              <UserMenu />
               <MobileMenu />
             </div>
           </div>
